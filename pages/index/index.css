@@ -1,0 +1,123 @@
+/* src/pages/index/index.css */
+
+.home-container {
+    text-align: center;
+    max-width: 1100px; /* Élargi pour accueillir les grandes cartes */
+    width: 100%;
+    padding: var(--spacing-medium);
+}
+
+.home-header {
+    margin-bottom: var(--spacing-large);
+}
+
+.main-title {
+    font-size: var(--font-size-title);
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: var(--font-size-subtitle);
+    color: var(--color-text);
+}
+
+/* === Composant : Profile Cards === */
+.profile-cards {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-large);
+    flex-wrap: wrap; /* S'adapte si l'écran est petit */
+    margin-top: var(--spacing-large); /* Espace ajouté au-dessus des cartes */
+}
+
+/* La classe de base de notre Objet "Card" */
+.card {
+    background-color: var(--color-card-bg);
+    border: 4px solid transparent;
+    border-radius: var(--border-radius);
+    padding: 4rem 2rem; /* Cartes plus hautes */
+    width: 420px; /* Cartes plus larges */
+    text-decoration: none; /* Enlève le souligné du lien */
+    color: var(--color-text);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08); /* Ombre douce */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s;
+
+    /* Pour la motricité : la zone entière est cliquable */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centre le contenu verticalement */
+    cursor: pointer;
+}
+
+/* État au survol (Feedback visuel important) */
+.card:hover, .card:focus {
+    transform: translateY(-8px); /* Effet de levée prononcé */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    outline: none; /* On remplace l'outline par défaut par une bordure claire */
+}
+
+/* Modificateur pour la carte Senior */
+.card--senior {
+    border-color: var(--color-primary);
+}
+.card--senior:hover, .card--senior:focus {
+    background-color: #f0fdf4; /* Feedback couleur léger au survol */
+}
+
+/* Modificateur pour la carte Aidant */
+.card--aidant {
+    border-color: var(--color-secondary);
+}
+.card--aidant:hover, .card--aidant:focus {
+    background-color: #f0f7ff; /* Feedback couleur léger au survol */
+}
+
+/* --- AFFICHAGE DE L'IMAGE (CERCLE COMPLET) --- */
+
+/* 1. Le conteneur de l'icône (le cercle) */
+.card__icon {
+    width: 180px;  /* Cercle plus grand */
+    height: 180px;
+    background-color: #F1F1F1; /* Fond de secours si l'image ne charge pas */
+    border-radius: 50%; /* Cercle parfait */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--spacing-large);
+    border: 3px solid #EAEAEA; /* Bordure discrète */
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); /* Légère ombre interne */
+    overflow: hidden; /* Coupe l'image qui dépasse pour garder la forme ronde */
+}
+
+/* Adaptations de couleur de bordure du cercle selon la carte */
+.card--senior .card__icon {
+    border-color: #b2f5ea;
+}
+
+.card--aidant .card__icon {
+    border-color: #bae7ff;
+}
+
+/* 2. L'image à l'intérieur du cercle */
+.card__icon img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Force l'image à remplir tout le cercle */
+    display: block;
+}
+
+/* --- TEXTES INTERNES DE LA CARTE --- */
+
+.card__title {
+    font-size: var(--font-size-title);
+    margin-bottom: 1rem;
+}
+
+.card__text {
+    font-size: var(--font-size-text);
+    color: #555;
+}

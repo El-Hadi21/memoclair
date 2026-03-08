@@ -1,0 +1,36 @@
+/* src/styles/global.css */
+
+:root {
+    /* Couleurs accessibles (Contraste élevé) */
+    --color-background: #FDFBF7; /* Blanc cassé pour éviter l'éblouissement */
+    --color-text: #1A1A1A; /* Noir presque pur pour une lisibilité maximale */
+    --color-primary: #2C6E49; /* Vert rassurant et très contrasté */
+    --color-secondary: #0056B3; /* Bleu profond pour les actions secondaires */
+    --color-card-bg: #FFFFFF;
+
+    /* Tailles de police (Adaptées à la presbytie) */
+    --font-size-title: 3rem;     /* 48px */
+    --font-size-subtitle: 2rem;  /* 32px */
+    --font-size-text: 1.5rem;    /* 24px - Minimum syndical pour nos seniors */
+
+    /* Espacements et Bordures */
+    --border-radius: 16px; /* Bords très arrondis pour un côté doux/non-médical */
+    --spacing-large: 3rem;
+    --spacing-medium: 1.5rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Police sans empattement, très lisible */
+    background-color: var(--color-background);
+    color: var(--color-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
