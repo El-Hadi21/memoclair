@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoClair - Statistiques</title>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="statistics.css">
+</head>
+<body class="statistics-body">
+
+<nav class="navbar">
+    <div class="navbar__logo">MemoClair</div>
+    <div class="navbar__links">
+        <a href="../aidant/dashboard.html" class="nav-item">Tableau de bord</a>
+        <a href="#" class="nav-item active">Statistiques</a>
+        <a href="#" class="nav-item">Gérer les jeux</a>
+        <a href="../index/index.html" class="nav-item btn-logout">Déconnexion</a>
+    </div>
+</nav>
+
+<main class="statistics-container">
+
+    <header class="statistics-header">
+        <h1 class="statistics-title">Statistiques de Jean-Pierre</h1>
+        <div class="period-selector">
+            <button class="period-btn active">Semaine</button>
+            <button class="period-btn">Mois</button>
+            <button class="period-btn">Année</button>
+        </div>
+    </header>
+
+    <section class="statistics-grid">
+
+        <!-- Carte de progression globale -->
+        <article class="stat-card stat-card--wide">
+            <div class="stat-card__header">
+                <h3 class="stat-card__title">Progression globale</h3>
+                <span class="stat-card__icon">📊</span>
+            </div>
+            <div class="progress-chart">
+                <div class="progress-bar">
+                    <div class="progress-bar__fill" style="width: 75%;">
+                        <span class="progress-bar__label">75%</span>
+                    </div>
+                </div>
+                <p class="progress-text">Excellente progression cette semaine !</p>
+            </div>
+        </article>
+
+        <!-- Temps de jeu total -->
+        <article class="stat-card">
+            <div class="stat-card__header">
+                <h3 class="stat-card__title">Temps de jeu</h3>
+                <span class="stat-card__icon">⏱️</span>
+            </div>
+            <p class="stat-card__value">2h 15m</p>
+            <p class="stat-card__trend positive">+15% vs semaine dernière</p>
+        </article>
+
+        <!-- Sessions complétées -->
+        <article class="stat-card">
+            <div class="stat-card__header">
+                <h3 class="stat-card__title">Sessions</h3>
+                <span class="stat-card__icon">🎯</span>
+            </div>
+            <p class="stat-card__value">12</p>
+            <p class="stat-card__trend positive">+3 sessions</p>
+        </article>
+
+        <!-- Taux de réussite -->
+        <article class="stat-card">
+            <div class="stat-card__header">
+                <h3 class="stat-card__title">Taux de réussite</h3>
+                <span class="stat-card__icon">✅</span>
+            </div>
+            <p class="stat-card__value">85%</p>
+            <p class="stat-card__trend positive">+5%</p>
+        </article>
+
+        <!-- Score moyen -->
+        <article class="stat-card">
+            <div class="stat-card__header">
+                <h3 class="stat-card__title">Score moyen</h3>
+                <span class="stat-card__icon">⭐</span>
+            </div>
+            <p class="stat-card__value">420</p>
+            <p class="stat-card__trend neutral">Stable</p>
+        </article>
+
+        <!-- Jeux par catégorie -->
+        <article class="stat-card stat-card--tall">
+            <div class="stat-card__header">
+                <h3 class="stat-card__title">Jeux par catégorie</h3>
+                <span class="stat-card__icon">🎮</span>
+            </div>
+            <ul class="game-list">
+                <li class="game-item">
+                    <span class="game-name">Memory</span>
+                    <div class="game-bar">
+                        <div class="game-bar__fill" style="width: 80%"></div>
+                    </div>
+                    <span class="game-count">8 sessions</span>
+                </li>
+                <li class="game-item">
+                    <span class="game-name">Quiz</span>
+                    <div class="game-bar">
+                        <div class="game-bar__fill" style="width: 40%"></div>
+                    </div>
+                    <span class="game-count">4 sessions</span>
+                </li>
+            </ul>
+        </article>
+
+        <!-- Activité récente -->
+        <article class="stat-card stat-card--tall">
+            <div class="stat-card__header">
+                <h3 class="stat-card__title">Activité récente</h3>
+                <span class="stat-card__icon">📅</span>
+            </div>
+            <ul class="activity-list">
+                <li class="activity-item">
+                    <span class="activity-date">Aujourd'hui, 14h30</span>
+                    <p class="activity-desc">Memory - Score: 450 pts</p>
+                </li>
+                <li class="activity-item">
+                    <span class="activity-date">Hier, 15h00</span>
+                    <p class="activity-desc">Quiz - Score: 390 pts</p>
+                </li>
+                <li class="activity-item">
+                    <span class="activity-date">Il y a 2 jours, 16h15</span>
+                    <p class="activity-desc">Memory - Score: 480 pts</p>
+                </li>
+            </ul>
+        </article>
+
+        <!-- Points forts -->
+        <article class="stat-card stat-card--highlight">
+            <div class="stat-card__header">
+                <h3 class="stat-card__title">Points forts</h3>
+                <span class="stat-card__icon">💪</span>
+            </div>
+            <ul class="strengths-list">
+                <li>✓ Mémoire visuelle excellente</li>
+                <li>✓ Concentration améliorée</li>
+                <li>✓ Régularité dans la pratique</li>
+            </ul>
+        </article>
+
+        <!-- Recommandations -->
+        <article class="stat-card stat-card--highlight">
+            <div class="stat-card__header">
+                <h3 class="stat-card__title">Recommandations</h3>
+                <span class="stat-card__icon">💡</span>
+            </div>
+            <p class="recommendation-text">Continuez avec le Memory, essayez d'augmenter progressivement le niveau de difficulté.</p>
+            <button class="btn-secondary">Voir les suggestions</button>
+        </article>
+
+    </section>
+
+</main>
+
+<script src="statistics.js"></script>
+</body>
+</html>
+
