@@ -23,37 +23,49 @@
 
 <main class="statistics-container">
 
-    <!-- En-tête -->
+    <!-- ── En-tête ── -->
     <header class="statistics-header">
         <div>
             <h1 class="statistics-title">Suivi — Jean-Pierre</h1>
-            <p class="statistics-period">Semaine du 9 au 15 mars 2026</p>
+            <p class="statistics-period" id="period-label">Semaine du 9 au 15 mars 2026</p>
         </div>
-        <div class="period-selector" role="group" aria-label="Période">
-            <button class="period-btn active" data-period="semaine">Semaine</button>
-            <button class="period-btn"        data-period="mois">Mois</button>
-            <button class="period-btn"        data-period="annee">Année</button>
+        <div class="header-actions">
+            <div class="period-selector" role="group" aria-label="Période">
+                <button class="period-btn active" data-period="semaine">Semaine</button>
+                <button class="period-btn"        data-period="mois">Mois</button>
+                <button class="period-btn"        data-period="annee">Année</button>
+            </div>
+            <button class="btn-export" onclick="window.print()" aria-label="Exporter en PDF">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 6 2 18 2 18 9"/>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                    <rect x="6" y="14" width="12" height="8"/>
+                </svg>
+                Exporter PDF
+            </button>
         </div>
     </header>
 
-    <!-- 3 cartes résumé -->
+    <!-- ══════════════════════════════════════
+         1. CARTES RÉSUMÉ
+    ══════════════════════════════════════ -->
     <section class="summary-grid" aria-label="Résumé">
 
         <article class="stat-card stat-card--primary">
             <div class="stat-card__header">
-                <h3 class="stat-card__title">Sessions cette semaine</h3>
+                <h3 class="stat-card__title">Sessions</h3>
                 <span class="stat-card__icon">📅</span>
             </div>
             <p class="stat-card__value" id="val-sessions">5</p>
-            <!-- Sparkline SVG -->
             <svg class="sparkline" viewBox="0 0 80 28" aria-hidden="true">
                 <polyline id="sparkline-line"
                     points="0,22 13,18 26,24 40,10 53,14 66,8 80,8"
                     fill="none" stroke="#6B8F71" stroke-width="2.5"
                     stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="80" cy="8" r="3.5" fill="#6B8F71"/>
+                <circle id="sparkline-dot" cx="80" cy="8" r="3.5" fill="#6B8F71"/>
             </svg>
-            <p class="stat-card__trend positive" id="trend-sessions">+2 vs semaine dernière</p>
+            <p class="stat-card__trend positive" id="trend-sessions">+2 vs période précédente</p>
         </article>
 
         <article class="stat-card">
@@ -76,12 +88,259 @@
 
     </section>
 
-    <!-- Timeline sessions -->
+    <!-- ══════════════════════════════════════
+         2. ÉVOLUTION DE L'ATTENTION
+    ══════════════════════════════════════ -->
+    <section class="stats-section">
+        <div class="section-header">
+            <h2 class="section-title">📈 Évolution de la durée d'attention</h2>
+            <span class="section-badge" id="attention-trend-badge">+3 min sur 4 semaines</span>
+        </div>
+        <p class="section-desc">
+            Tendance de la capacité d'attention mesurée lors des sessions. Utile pour ajuster la durée des exercices.
+        </p>
+
+        <!-- Graphique SVG ligne -->
+        <div class="chart-wrap">
+            <svg class="line-chart" viewBox="0 0 480 160" aria-label="Graphique évolution attention">
+                <!-- Grille horizontale -->
+                <line x1="48" y1="20"  x2="460" y2="20"  stroke="#E8EDF2" stroke-width="1"/>
+                <line x1="48" y1="55"  x2="460" y2="55"  stroke="#E8EDF2" stroke-width="1"/>
+                <line x1="48" y1="90"  x2="460" y2="90"  stroke="#E8EDF2" stroke-width="1"/>
+                <line x1="48" y1="125" x2="460" y2="125" stroke="#E8EDF2" stroke-width="1"/>
+                <!-- Axe Y labels -->
+                <text x="40" y="24"  text-anchor="end" font-size="11" fill="#9CA3AF">20 min</text>
+                <text x="40" y="59"  text-anchor="end" font-size="11" fill="#9CA3AF">15 min</text>
+                <text x="40" y="94"  text-anchor="end" font-size="11" fill="#9CA3AF">10 min</text>
+                <text x="40" y="129" text-anchor="end" font-size="11" fill="#9CA3AF">5 min</text>
+                <!-- Axe X labels -->
+                <text x="110" y="150" text-anchor="middle" font-size="11" fill="#9CA3AF">Sem. 1</text>
+                <text x="220" y="150" text-anchor="middle" font-size="11" fill="#9CA3AF">Sem. 2</text>
+                <text x="330" y="150" text-anchor="middle" font-size="11" fill="#9CA3AF">Sem. 3</text>
+                <text x="440" y="150" text-anchor="middle" font-size="11" fill="#9CA3AF">Sem. 4</text>
+                <!-- Zone remplie sous la courbe -->
+                <path id="attention-area"
+                    d="M110,104 L220,97 L330,90 L440,76 L440,125 L330,125 L220,125 L110,125 Z"
+                    fill="#6B8F71" opacity="0.1"/>
+                <!-- Courbe -->
+                <polyline id="attention-line"
+                    points="110,104 220,97 330,90 440,76"
+                    fill="none" stroke="#6B8F71" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Points de données -->
+                <circle id="dot-s1" cx="110" cy="104" r="5" fill="#6B8F71"/>
+                <circle id="dot-s2" cx="220" cy="97"  r="5" fill="#6B8F71"/>
+                <circle id="dot-s3" cx="330" cy="90"  r="5" fill="#6B8F71"/>
+                <circle id="dot-s4" cx="440" cy="76"  r="6" fill="#6B8F71" stroke="#fff" stroke-width="2"/>
+                <!-- Valeurs au-dessus des points -->
+                <text id="label-s1" x="110" y="96"  text-anchor="middle" font-size="12" font-weight="700" fill="#5A7860">8 min</text>
+                <text id="label-s2" x="220" y="89"  text-anchor="middle" font-size="12" font-weight="700" fill="#5A7860">9 min</text>
+                <text id="label-s3" x="330" y="82"  text-anchor="middle" font-size="12" font-weight="700" fill="#5A7860">10 min</text>
+                <text id="label-s4" x="440" y="68"  text-anchor="middle" font-size="12" font-weight="700" fill="#5A7860">11 min</text>
+            </svg>
+        </div>
+        <p class="chart-note" id="attention-note">
+            ✅ La durée d'attention progresse régulièrement. Envisagez d'augmenter les sessions à <strong>15 min</strong> progressivement.
+        </p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         3. PERFORMANCE PAR JEU
+    ══════════════════════════════════════ -->
+    <section class="stats-section">
+        <div class="section-header">
+            <h2 class="section-title">🎮 Performance par jeu</h2>
+        </div>
+        <p class="section-desc">
+            Taux de complétion et de passage ("Passer") par type d'exercice. Aide à identifier les jeux adaptés au niveau actuel.
+        </p>
+
+        <div class="game-perf-list" id="game-perf-list">
+
+            <div class="game-perf-row">
+                <div class="game-perf-row__name">
+                    <span class="game-perf-row__icon">☕</span>
+                    <span>Associations du Quotidien</span>
+                </div>
+                <div class="game-perf-row__bars">
+                    <div class="bar-row">
+                        <span class="bar-label">Complétion</span>
+                        <div class="bar-track">
+                            <div class="bar-fill bar-fill--green" style="width: 82%"></div>
+                        </div>
+                        <span class="bar-pct">82 %</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-label">Passages</span>
+                        <div class="bar-track">
+                            <div class="bar-fill bar-fill--warm" style="width: 18%"></div>
+                        </div>
+                        <span class="bar-pct">18 %</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-perf-row">
+                <div class="game-perf-row__name">
+                    <span class="game-perf-row__icon">🖼️</span>
+                    <span>Mémoire &amp; Réminiscence</span>
+                </div>
+                <div class="game-perf-row__bars">
+                    <div class="bar-row">
+                        <span class="bar-label">Complétion</span>
+                        <div class="bar-track">
+                            <div class="bar-fill bar-fill--green" style="width: 71%"></div>
+                        </div>
+                        <span class="bar-pct">71 %</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-label">Passages</span>
+                        <div class="bar-track">
+                            <div class="bar-fill bar-fill--warm" style="width: 29%"></div>
+                        </div>
+                        <span class="bar-pct">29 %</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-perf-row">
+                <div class="game-perf-row__name">
+                    <span class="game-perf-row__icon">💬</span>
+                    <span>Proverbes à Compléter</span>
+                </div>
+                <div class="game-perf-row__bars">
+                    <div class="bar-row">
+                        <span class="bar-label">Complétion</span>
+                        <div class="bar-track">
+                            <div class="bar-fill bar-fill--green" style="width: 90%"></div>
+                        </div>
+                        <span class="bar-pct">90 %</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-label">Passages</span>
+                        <div class="bar-track">
+                            <div class="bar-fill bar-fill--warm" style="width: 10%"></div>
+                        </div>
+                        <span class="bar-pct">10 %</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="chart-note">
+            ⚠️ Le taux de passage élevé sur <strong>Mémoire &amp; Réminiscence (29 %)</strong> peut indiquer une difficulté de reconnaissance — enrichissez la galerie de photos ou réduisez le nombre d'options.
+        </p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         4. HEURE D'ENGAGEMENT OPTIMALE
+    ══════════════════════════════════════ -->
+    <section class="stats-section">
+        <div class="section-header">
+            <h2 class="section-title">🕐 Heure d'engagement préférentielle</h2>
+        </div>
+        <p class="section-desc">
+            Créneaux horaires où Jean-Pierre est le plus concentré et réactif. Basé sur l'humeur et la durée des sessions.
+        </p>
+
+        <div class="time-chart" id="time-chart">
+            <div class="time-slot">
+                <div class="time-slot__bar-wrap">
+                    <div class="time-slot__bar" style="height: 35%">
+                        <span class="time-slot__count">2</span>
+                    </div>
+                </div>
+                <div class="time-slot__mood">😐</div>
+                <span class="time-slot__label">Matin<br>8h – 12h</span>
+            </div>
+            <div class="time-slot time-slot--best">
+                <div class="time-slot__badge">Optimal</div>
+                <div class="time-slot__bar-wrap">
+                    <div class="time-slot__bar" style="height: 100%">
+                        <span class="time-slot__count">5</span>
+                    </div>
+                </div>
+                <div class="time-slot__mood">😊</div>
+                <span class="time-slot__label">Après-midi<br>12h – 17h</span>
+            </div>
+            <div class="time-slot">
+                <div class="time-slot__bar-wrap">
+                    <div class="time-slot__bar" style="height: 15%">
+                        <span class="time-slot__count">1</span>
+                    </div>
+                </div>
+                <div class="time-slot__mood">😐</div>
+                <span class="time-slot__label">Soir<br>17h – 21h</span>
+            </div>
+        </div>
+
+        <p class="chart-note">
+            💡 Planifiez les exercices <strong>entre 13h et 16h</strong> pour maximiser l'engagement et la qualité des réponses.
+        </p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         5. THÈMES LES PLUS ENGAGEANTS
+    ══════════════════════════════════════ -->
+    <section class="stats-section">
+        <div class="section-header">
+            <h2 class="section-title">🌸 Thèmes les plus engageants</h2>
+        </div>
+        <p class="section-desc">
+            Nombre d'interactions positives par thème. Utile pour personnaliser les prochains exercices.
+        </p>
+
+        <div class="themes-list" id="themes-list">
+
+            <div class="theme-row">
+                <span class="theme-row__name">👨‍👩‍👧 Famille</span>
+                <div class="bar-track">
+                    <div class="bar-fill bar-fill--green" style="width: 100%"></div>
+                </div>
+                <span class="theme-row__count">8 interactions</span>
+            </div>
+            <div class="theme-row">
+                <span class="theme-row__name">🌿 Nature</span>
+                <div class="bar-track">
+                    <div class="bar-fill bar-fill--green" style="width: 75%"></div>
+                </div>
+                <span class="theme-row__count">6 interactions</span>
+            </div>
+            <div class="theme-row">
+                <span class="theme-row__name">🍽️ Cuisine</span>
+                <div class="bar-track">
+                    <div class="bar-fill bar-fill--green" style="width: 62%"></div>
+                </div>
+                <span class="theme-row__count">5 interactions</span>
+            </div>
+            <div class="theme-row">
+                <span class="theme-row__name">🎵 Musique</span>
+                <div class="bar-track">
+                    <div class="bar-fill bar-fill--green" style="width: 37%"></div>
+                </div>
+                <span class="theme-row__count">3 interactions</span>
+            </div>
+            <div class="theme-row">
+                <span class="theme-row__name">✈️ Voyage</span>
+                <div class="bar-track">
+                    <div class="bar-fill bar-fill--green" style="width: 25%"></div>
+                </div>
+                <span class="theme-row__count">2 interactions</span>
+            </div>
+
+        </div>
+        <p class="chart-note">
+            💡 Priorisez les contenus autour de la <strong>Famille</strong> et de la <strong>Nature</strong> pour les prochaines sessions.
+        </p>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         6. TIMELINE SESSIONS
+    ══════════════════════════════════════ -->
     <section class="sessions-section">
-        <h2 class="sessions-title">5 dernières sessions</h2>
-
+        <h2 class="sessions-title">🗓 Dernières sessions</h2>
         <ul class="sessions-list" id="sessions-list">
-
             <li class="session-row">
                 <span class="session-mood" aria-label="Humeur positive">😊</span>
                 <div class="session-info">
@@ -90,7 +349,6 @@
                 </div>
                 <span class="session-duration">12 min</span>
             </li>
-
             <li class="session-row">
                 <span class="session-mood" aria-label="Humeur positive">😊</span>
                 <div class="session-info">
@@ -99,7 +357,6 @@
                 </div>
                 <span class="session-duration">8 min</span>
             </li>
-
             <li class="session-row">
                 <span class="session-mood" aria-label="Humeur neutre">😐</span>
                 <div class="session-info">
@@ -108,29 +365,121 @@
                 </div>
                 <span class="session-duration">14 min</span>
             </li>
-
             <li class="session-row">
                 <span class="session-mood" aria-label="Humeur positive">😊</span>
                 <div class="session-info">
-                    <p class="session-game">Associations du Quotidien</p>
-                    <p class="session-date">11 mars 2026, 11 h 45</p>
+                    <p class="session-game">Proverbes à Compléter</p>
+                    <p class="session-date">11 mars 2026, 13 h 45</p>
                 </div>
                 <span class="session-duration">10 min</span>
             </li>
-
             <li class="session-row">
                 <span class="session-mood" aria-label="Humeur neutre">😐</span>
                 <div class="session-info">
-                    <p class="session-game">Mémoire &amp; Réminiscence</p>
+                    <p class="session-game">Associations du Quotidien</p>
                     <p class="session-date">9 mars 2026, 16 h 20</p>
                 </div>
                 <span class="session-duration">6 min</span>
             </li>
-
         </ul>
     </section>
 
-    <!-- Encart avertissement -->
+    <!-- ══════════════════════════════════════
+         7. NOTES DE L'AIDANT
+    ══════════════════════════════════════ -->
+    <section class="stats-section notes-section">
+        <div class="section-header">
+            <h2 class="section-title">📝 Notes de l'aidant</h2>
+        </div>
+        <p class="section-desc">
+            Observations cliniques après chaque session. Ces notes complètent les données chiffrées.
+        </p>
+
+        <form class="notes-form" id="notes-form">
+            <textarea
+                id="note-input"
+                class="notes-input"
+                placeholder="Ex : A reconnu Marie immédiatement. Semblait fatigué en fin de session..."
+                rows="3"
+                aria-label="Nouvelle note"
+                maxlength="400"
+            ></textarea>
+            <div class="notes-form__footer">
+                <span class="notes-char-count" id="notes-char-count">0 / 400</span>
+                <button type="submit" class="btn-add-note">Ajouter la note</button>
+            </div>
+        </form>
+
+        <ul class="notes-list" id="notes-list">
+            <li class="note-item">
+                <div class="note-item__meta">
+                    <span class="note-item__date">15 mars 2026 – Sophie</span>
+                    <button class="note-item__delete" aria-label="Supprimer cette note" title="Supprimer">×</button>
+                </div>
+                <p class="note-item__text">A reconnu la photo de Marie sans hésiter. Bonne journée, humeur positive tout au long de la session.</p>
+            </li>
+            <li class="note-item">
+                <div class="note-item__meta">
+                    <span class="note-item__date">12 mars 2026 – Sophie</span>
+                    <button class="note-item__delete" aria-label="Supprimer cette note" title="Supprimer">×</button>
+                </div>
+                <p class="note-item__text">Session courte — dormait mal la nuit précédente. A passé plusieurs questions sur Mémoire. À replanifier en début d'après-midi.</p>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         8. RECOMMANDATIONS AUTOMATIQUES
+    ══════════════════════════════════════ -->
+    <section class="stats-section recommendations-section">
+        <div class="section-header">
+            <h2 class="section-title">💡 Recommandations pour les prochains exercices</h2>
+        </div>
+        <p class="section-desc">
+            Générées automatiquement à partir des données comportementales de Jean-Pierre.
+            À valider avec l'équipe médicale.
+        </p>
+
+        <ul class="reco-list" id="reco-list">
+            <li class="reco-item reco-item--green">
+                <span class="reco-item__icon">🕐</span>
+                <div>
+                    <p class="reco-item__title">Planifier les sessions l'après-midi</p>
+                    <p class="reco-item__desc">Jean-Pierre est 3× plus engagé entre 12h et 17h. Évitez le créneau du soir.</p>
+                </div>
+            </li>
+            <li class="reco-item reco-item--green">
+                <span class="reco-item__icon">💬</span>
+                <div>
+                    <p class="reco-item__title">Commencer par les Proverbes</p>
+                    <p class="reco-item__desc">Taux de complétion de 90 % — idéal en échauffement cognitif pour engager la session.</p>
+                </div>
+            </li>
+            <li class="reco-item reco-item--amber">
+                <span class="reco-item__icon">🖼️</span>
+                <div>
+                    <p class="reco-item__title">Enrichir la galerie de Mémoire & Réminiscence</p>
+                    <p class="reco-item__desc">29 % de passages sur ce jeu. Ajoutez des photos récentes de la famille pour faciliter la reconnaissance.</p>
+                </div>
+            </li>
+            <li class="reco-item reco-item--green">
+                <span class="reco-item__icon">⏱️</span>
+                <div>
+                    <p class="reco-item__title">Augmenter progressivement la durée</p>
+                    <p class="reco-item__desc">L'attention progresse de +3 min sur 4 semaines. Testez des sessions de 13 min la semaine prochaine.</p>
+                </div>
+            </li>
+            <li class="reco-item reco-item--green">
+                <span class="reco-item__icon">👨‍👩‍👧</span>
+                <div>
+                    <p class="reco-item__title">Prioriser le thème Famille</p>
+                    <p class="reco-item__desc">8 interactions positives — c'est le thème le plus fédérateur. Créez des associations autour de photos familiales.</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ── Disclaimer ── -->
     <div class="disclaimer-box">
         <span class="disclaimer-box__icon">ℹ️</span>
         <p>
