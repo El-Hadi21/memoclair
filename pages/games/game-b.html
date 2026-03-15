@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoClair - Mémoire &amp; Réminiscence</title>
+    <script src="../../scripts/settings-apply.js"></script>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="game-b.css">
+</head>
+<body>
+
+<main class="game-container">
+
+    <!-- En-tête -->
+    <header class="game-header">
+        <a href="games.html" class="btn-back" aria-label="Retour aux jeux">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Retour
+        </a>
+        <h1 class="game-title">Mémoire &amp; Réminiscence</h1>
+        <!-- Badge Mode Duo — affiché si duo=1 dans l'URL -->
+        <span class="duo-badge" id="duo-badge" hidden>👥 Mode Duo</span>
+    </header>
+
+    <!-- Photo personnelle (placeholder) -->
+    <div class="photo-frame" role="img" aria-label="Photo personnelle">
+        <svg viewBox="0 0 280 240" aria-hidden="true">
+            <!-- Fond de la photo -->
+            <rect width="280" height="240" rx="16" fill="#EEF5EF"/>
+            <!-- Soleil -->
+            <circle cx="240" cy="48" r="32" fill="#FAD07A" opacity="0.7"/>
+            <!-- Silhouette tête -->
+            <circle cx="140" cy="90" r="44" fill="#D4A96A"/>
+            <!-- Silhouette corps -->
+            <path d="M72 240 Q72 170 140 162 Q208 170 208 240 Z" fill="#A8C4A2"/>
+            <!-- Col -->
+            <path d="M118 162 Q140 178 162 162" fill="none" stroke="#6B8F71" stroke-width="4" stroke-linecap="round"/>
+            <!-- Étiquette -->
+            <text x="140" y="228" text-anchor="middle" font-size="14" fill="#9CA3AF" font-family="Inter, sans-serif">
+                Photo personnelle
+            </text>
+        </svg>
+    </div>
+
+    <!-- Question -->
+    <p class="game-question">Qui est cette personne ?</p>
+
+    <!-- Réponses textuelles -->
+    <section class="choices" aria-label="Choisissez la bonne réponse">
+
+        <button class="choice-btn" data-correct="false">Marie, ma fille</button>
+        <button class="choice-btn choice-btn--correct" data-correct="true">Sophie, ma femme</button>
+        <button class="choice-btn" data-correct="false">Hélène, ma sœur</button>
+
+    </section>
+
+    <!-- Feedback (caché au départ) -->
+    <div class="feedback" id="feedback" aria-live="polite" hidden></div>
+
+    <!-- Bouton Passer -->
+    <div class="skip-wrap">
+        <button class="btn-passer" id="btn-passer">Passer</button>
+    </div>
+
+</main>
+
+<!-- Bandeau aidant — visible uniquement en mode duo -->
+<aside class="caregiver-strip" id="caregiver-strip" hidden aria-label="Conseil pour l'aidant">
+    <span class="caregiver-strip__icon">💬</span>
+    <div class="caregiver-strip__content">
+        <p class="caregiver-strip__heading">Conseil aidant</p>
+        <p class="caregiver-strip__hint" id="caregiver-hint">
+            "Laissez-lui le temps de se souvenir…"
+        </p>
+    </div>
+</aside>
+
+<script src="game-b.js"></script>
+</body>
+</html>

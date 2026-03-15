@@ -1,96 +1,272 @@
-/* src/pages/games/games.css */
+/* pages/games/games.css */
 
-.games-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-large);
-    text-align: center;
-    width: 100%;
+body {
+    align-items: flex-start;
+    padding: var(--spacing-large) 0;
 }
 
-/* --- HEADER ET BOUTON RETOUR --- */
+.games-container {
+    max-width: 960px;
+    width: 100%;
+    padding: 0 var(--spacing-medium);
+}
+
+/* --- HEADER --- */
 .games-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
     position: relative;
 }
 
-/* Le bouton retour doit être impossible à rater */
 .btn-back {
     position: absolute;
     left: 0;
     top: 0;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    font-size: var(--font-size-text);
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
     text-decoration: none;
     color: var(--color-text);
     background-color: #EAEAEA;
-    padding: 1rem 2rem;
+    padding: 1rem 1.75rem;
     border-radius: var(--border-radius);
-    font-weight: bold;
-    border: 3px solid transparent;
-    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+    min-height: 56px;
+    transition: all 0.2s ease;
 }
 
-.btn-back:hover, .btn-back:focus {
-    background-color: #D4D4D4;
-    border-color: #A0A0A0;
-    transform: scale(1.05); /* Léger grossissement pour le feedback */
+.btn-back:hover,
+.btn-back:focus {
+    background-color: var(--color-primary-bg);
+    border-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    outline: none;
 }
 
-.main-title {
+.games-title {
     font-size: var(--font-size-title);
-    color: var(--color-primary);
-    margin-top: 5rem; /* Espace pour ne pas coller au bouton retour */
+    color: var(--color-primary-dark);
+    margin-top: 5rem;
+    text-align: center;
+    font-weight: 800;
 }
 
-/* --- LISTE DES JEUX --- */
+/* Bouton paramètres accessibilité */
+.btn-settings {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--border-radius);
+    background-color: var(--color-card-bg);
+    border: 2px solid var(--color-primary-mid);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-settings:hover,
+.btn-settings:focus {
+    background-color: var(--color-primary-bg);
+    border-color: var(--color-primary);
+    color: var(--color-primary-dark);
+    outline: none;
+}
+
+/* --- GRILLE DE CARTES --- */
 .games-list {
     display: flex;
     justify-content: center;
-    gap: 4rem;
+    gap: 3rem;
     flex-wrap: wrap;
 }
 
+/* --- CARTE DE JEU --- */
 .game-card {
     background-color: var(--color-card-bg);
-    border: 5px solid var(--color-primary); /* Bordure épaisse et visible */
-    border-radius: 24px; /* Bords très ronds, effet "jouet" rassurant */
-    padding: 3rem 2rem;
+    border: 3px solid var(--color-primary-mid);
+    border-radius: var(--border-radius-lg);
+    padding: 2.5rem 2rem;
     width: 400px;
-    text-decoration: none;
-    color: var(--color-text);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease-in-out;
-    cursor: pointer;
-}
-
-.game-card:hover, .game-card:focus {
-    transform: translateY(-10px);
-    background-color: #f0fdf4;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-.game-card__icon {
-    width: 220px;
-    height: 220px;
-    margin: 0 auto 2rem auto;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 0;
+    box-shadow: 0 8px 24px rgba(107, 143, 113, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.game-card__icon img {
+.game-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(107, 143, 113, 0.18);
+    border-color: var(--color-primary);
+}
+
+/* --- ICÔNE --- */
+.game-card__icon {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary-bg);
+    border-radius: 50%;
+    padding: 1rem;
+}
+
+.game-card__icon svg {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* L'image s'adapte sans se déformer */
+}
+
+/* --- CORPS DE CARTE --- */
+.game-card__body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
 }
 
 .game-card__title {
-    font-size: 2.5rem; /* Titre très grand (environ 40px) */
-    font-weight: bold;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-align: center;
+    line-height: 1.25;
+}
+
+.game-card__desc {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* --- BOUTON JOUER --- */
+.btn-jouer {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: var(--color-primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 1.25rem 2rem;
+    border-radius: var(--border-radius);
+    min-height: 72px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-jouer:hover,
+.btn-jouer:focus {
+    background-color: var(--color-primary-dark);
+    transform: scale(1.02);
+    outline: 3px solid var(--color-primary-light);
+    outline-offset: 3px;
+}
+
+/* --- TOGGLE MODE DUO --- */
+.duo-toggle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--color-primary-bg);
+    border-radius: 12px;
+    padding: 0.875rem 1.25rem;
+    width: 100%;
+}
+
+.duo-toggle__label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    flex: 1;
+}
+
+/* Interrupteur CSS pur */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 32px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #CCC;
+    border-radius: 32px;
+    transition: background-color 0.25s;
+}
+
+.toggle-slider::before {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.25s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--color-primary);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(28px);
+}
+
+.toggle-switch input:focus-visible + .toggle-slider {
+    outline: 3px solid var(--color-primary-light);
+    outline-offset: 2px;
+}
+
+/* Badge duo actif */
+.duo-badge {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 880px) {
+    .games-list {
+        flex-direction: column;
+        align-items: center;
+    }
+    .game-card {
+        width: 100%;
+        max-width: 480px;
+    }
+    .games-title {
+        font-size: 2.25rem;
+    }
 }

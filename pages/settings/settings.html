@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoClair - Paramètres</title>
+    <script src="../../scripts/settings-apply.js"></script>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+
+<main class="settings-container">
+
+    <header class="settings-header">
+        <a href="../../index.html" class="btn-back" id="btn-back" aria-label="Retour">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Retour
+        </a>
+        <h1 class="settings-title">Paramètres d'affichage</h1>
+    </header>
+
+    <!-- Taille du texte -->
+    <section class="settings-card">
+        <h2 class="settings-card__title">
+            <span class="settings-card__icon" aria-hidden="true">🔤</span>
+            Taille du texte
+        </h2>
+        <p class="settings-card__desc">Choisissez la taille qui vous convient le mieux.</p>
+
+        <div class="font-size-group" role="group" aria-label="Taille du texte">
+            <button class="font-size-btn" data-size="normal" aria-pressed="true">
+                <span class="font-size-btn__preview" style="font-size: 1.1rem;">A</span>
+                <span class="font-size-btn__label">Normal</span>
+            </button>
+            <button class="font-size-btn" data-size="grand" aria-pressed="false">
+                <span class="font-size-btn__preview" style="font-size: 1.4rem;">A</span>
+                <span class="font-size-btn__label">Grand</span>
+            </button>
+            <button class="font-size-btn" data-size="tres-grand" aria-pressed="false">
+                <span class="font-size-btn__preview" style="font-size: 1.8rem;">A</span>
+                <span class="font-size-btn__label">Très grand</span>
+            </button>
+        </div>
+
+        <!-- Aperçu en direct -->
+        <div class="preview-box" aria-live="polite">
+            <p class="preview-box__text" id="preview-text">
+                Jean-Pierre aime le café le matin.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contraste -->
+    <section class="settings-card">
+        <h2 class="settings-card__title">
+            <span class="settings-card__icon" aria-hidden="true">🌗</span>
+            Contraste élevé
+        </h2>
+        <p class="settings-card__desc">
+            Fond sombre pour une meilleure lisibilité en cas de problème visuel.
+        </p>
+
+        <div class="contrast-row">
+            <span class="contrast-row__label" id="contrast-label">Désactivé</span>
+            <label class="toggle-switch" aria-label="Activer le contraste élevé">
+                <input type="checkbox" id="contrast-toggle" role="switch">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+    </section>
+
+    <!-- Bouton retour en bas aussi -->
+    <a href="../index/index.html" class="btn-home">
+        Retourner à l'accueil
+    </a>
+
+</main>
+
+<script src="settings.js"></script>
+</body>
+</html>

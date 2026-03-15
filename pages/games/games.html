@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MemoClair - Espace Jeux</title>
+    <script src="../../scripts/settings-apply.js"></script>
     <link rel="stylesheet" href="../../styles/global.css">
     <link rel="stylesheet" href="games.css">
 </head>
@@ -12,32 +13,102 @@
 <main class="games-container">
 
     <header class="games-header">
-        <a href="../index/index.html" class="btn-back">
-            <span aria-hidden="true">⬅️</span>
+        <a href="../index/index.html" class="btn-back" aria-label="Retour à l'accueil">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
             Retour
         </a>
-        <h1 class="main-title">À quoi voulez-vous jouer ?</h1>
+        <h1 class="games-title">À quoi voulez-vous jouer ?</h1>
+        <!-- Bouton paramètres accessibilité -->
+        <a href="../settings/settings.html" class="btn-settings" aria-label="Paramètres d'affichage"
+           id="btn-settings">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+        </a>
     </header>
 
     <section class="games-list">
 
-        <a href="../games/game-memory.html" class="game-card game-card--memory">
+        <!-- Carte A : Associations du Quotidien -->
+        <article class="game-card">
             <div class="game-card__icon">
-                <img src="#" alt="" aria-hidden="true">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <path d="M30 22 Q32 14 30 8" fill="none" stroke="#A8C4A2" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M42 18 Q44 10 42 5"  fill="none" stroke="#A8C4A2" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M54 22 Q56 14 54 8"  fill="none" stroke="#A8C4A2" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M18 34 L23 76 Q23 82 50 82 Q77 82 77 76 L82 34 Z" fill="#D4A96A"/>
+                    <line x1="18" y1="34" x2="82" y2="34" stroke="#B8854A" stroke-width="2"/>
+                    <ellipse cx="50" cy="44" rx="26" ry="6" fill="#8B5E3C"/>
+                    <path d="M77 46 Q94 46 94 59 Q94 72 77 70" fill="none" stroke="#B8854A" stroke-width="7" stroke-linecap="round"/>
+                    <ellipse cx="50" cy="82" rx="32" ry="6" fill="#C49060"/>
+                </svg>
             </div>
-            <h2 class="game-card__title">Jeu Memory</h2>
-        </a>
+            <div class="game-card__body">
+                <h2 class="game-card__title">Associations du Quotidien</h2>
+                <p class="game-card__desc">Retrouvez les objets qui vont ensemble.</p>
+                <a href="game-a.html" class="btn-jouer">Jouer</a>
+            </div>
+        </article>
 
-        <a href="#" class="game-card game-card--quiz">
+        <!-- Carte B : Mémoire & Réminiscence -->
+        <article class="game-card">
             <div class="game-card__icon">
-                <img src="#" alt="" aria-hidden="true">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <rect x="8" y="10" width="84" height="80" rx="8" fill="#C49A6C"/>
+                    <rect x="15" y="17" width="70" height="66" rx="5" fill="#F5E9D8"/>
+                    <rect x="21" y="23" width="58" height="54" rx="4" fill="#A8C4A2"/>
+                    <ellipse cx="50" cy="65" rx="22" ry="9" fill="#6B8F71"/>
+                    <circle  cx="38" cy="48" r="9"  fill="#FAD07A"/>
+                    <rect x="8"  y="10" width="10" height="10" rx="2" fill="#A07850"/>
+                    <rect x="82" y="10" width="10" height="10" rx="2" fill="#A07850"/>
+                    <rect x="8"  y="80" width="10" height="10" rx="2" fill="#A07850"/>
+                    <rect x="82" y="80" width="10" height="10" rx="2" fill="#A07850"/>
+                </svg>
             </div>
-            <h2 class="game-card__title">Jeu 2</h2>
-        </a>
+            <div class="game-card__body">
+                <h2 class="game-card__title">Mémoire &amp; Réminiscence</h2>
+                <p class="game-card__desc">Reconnaissez vos proches et vos souvenirs.</p>
+                <div class="duo-toggle" id="duo-section">
+                    <span class="duo-toggle__label">Mode Duo</span>
+                    <label class="toggle-switch" aria-label="Activer le mode duo">
+                        <input type="checkbox" id="duo-mode-toggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="duo-badge" id="duo-badge" aria-live="polite"></span>
+                </div>
+                <a href="game-b.html" class="btn-jouer" id="btn-jouer-b">Jouer</a>
+            </div>
+        </article>
+
+        <!-- Carte C : Proverbes à Compléter -->
+        <article class="game-card">
+            <div class="game-card__icon">
+                <!-- Bulle de citation SVG -->
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <!-- Bulle principale -->
+                    <path d="M12 10 Q12 6 16 6 L84 6 Q88 6 88 10 L88 60 Q88 64 84 64 L56 64 L44 80 L44 64 L16 64 Q12 64 12 60 Z"
+                          fill="#D5E9D7"/>
+                    <!-- Guillemets -->
+                    <text x="24" y="44" font-size="36" font-family="Georgia, serif"
+                          fill="#6B8F71" font-weight="bold">❝</text>
+                </svg>
+            </div>
+            <div class="game-card__body">
+                <h2 class="game-card__title">Proverbes à Compléter</h2>
+                <p class="game-card__desc">Retrouvez la fin des dictons d'autrefois.</p>
+                <a href="game-c.html" class="btn-jouer">Jouer</a>
+            </div>
+        </article>
 
     </section>
 
 </main>
 
+<script src="games.js"></script>
 </body>
 </html>
