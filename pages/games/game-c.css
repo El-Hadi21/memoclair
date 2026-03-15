@@ -1,0 +1,192 @@
+/* pages/games/game-c.css */
+
+body {
+    align-items: flex-start;
+    padding-bottom: 2rem;
+}
+
+.game-container {
+    max-width: 680px;
+    width: 100%;
+    padding: var(--spacing-medium);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* --- EN-TÊTE --- */
+.game-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-back {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+    background-color: var(--color-card-bg);
+    border: 2px solid var(--color-primary-mid);
+    padding: 1rem 1.75rem;
+    border-radius: var(--border-radius);
+    min-height: 56px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.btn-back:hover,
+.btn-back:focus {
+    background-color: var(--color-primary-bg);
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+.game-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.2;
+}
+
+/* --- COMPTEUR --- */
+.question-counter {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* --- CARTE PROVERBE --- */
+.proverb-card {
+    width: 100%;
+    background-color: var(--color-warm);
+    border: 3px solid var(--color-warm-border);
+    border-radius: var(--border-radius-lg);
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.proverb-card__quote {
+    font-size: 4rem;
+    color: var(--color-primary-light);
+    line-height: 1;
+    font-family: Georgia, serif;
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    opacity: 0.6;
+}
+
+.proverb-card__text {
+    font-size: var(--font-size-subtitle);
+    font-weight: 700;
+    color: var(--color-text);
+    text-align: center;
+    line-height: 1.35;
+    padding-top: 1.5rem;
+}
+
+/* --- CHOIX --- */
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.choice-btn {
+    width: 100%;
+    background-color: var(--color-card-bg);
+    border: 3px solid var(--color-primary-mid);
+    border-radius: var(--border-radius);
+    padding: 1.5rem 2rem;
+    font-size: var(--font-size-text);
+    font-weight: 700;
+    font-family: inherit;
+    color: var(--color-text);
+    cursor: pointer;
+    text-align: center;
+    min-height: 80px;
+    transition: all 0.2s ease;
+    font-style: italic;
+}
+
+.choice-btn:hover,
+.choice-btn:focus {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-bg);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.choice-btn.correct {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-bg);
+    color: var(--color-primary-dark);
+}
+
+.choice-btn.wrong {
+    border-color: var(--color-warm-border);
+    background-color: var(--color-warm);
+    opacity: 0.6;
+}
+
+.choice-btn:disabled {
+    cursor: default;
+    transform: none;
+}
+
+/* --- FEEDBACK --- */
+.feedback {
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 1.1rem 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    background-color: var(--color-primary-bg);
+    color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary-mid);
+    width: 100%;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- PASSER --- */
+.skip-wrap {
+    margin-top: auto;
+}
+
+.btn-passer {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: color 0.2s;
+}
+
+.btn-passer:hover,
+.btn-passer:focus {
+    color: var(--color-text);
+    outline: none;
+}

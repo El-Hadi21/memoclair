@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoClair - Profil</title>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body class="aidant-body">
+
+<nav class="navbar">
+    <div class="navbar__logo">MemoClair</div>
+    <div class="navbar__links">
+        <a href="dashboard.html"                class="nav-item">Tableau de bord</a>
+        <a href="profile.html"                  class="nav-item active">Profil</a>
+        <a href="media.html"                    class="nav-item">Médias</a>
+        <a href="../statistics/statistics.html" class="nav-item">Statistiques</a>
+        <a href="../index/index.html"           class="nav-item btn-logout">Déconnexion</a>
+    </div>
+</nav>
+
+<main class="profile-container">
+
+    <header class="profile-header">
+        <h1 class="profile-title">Profil de Jean-Pierre</h1>
+        <p class="profile-subtitle">Ces informations permettent d'adapter les jeux à la personne.</p>
+    </header>
+
+    <form class="profile-form" id="profile-form" novalidate>
+
+        <!-- Q1 : Stade estimé -->
+        <article class="question-card">
+            <div class="question-number">1</div>
+            <h2 class="question-label">Stade estimé de la maladie</h2>
+            <div class="radio-group" role="group" aria-label="Stade de la maladie">
+                <label class="radio-option">
+                    <input type="radio" name="stade" value="leger">
+                    <span class="radio-custom" aria-hidden="true"></span>
+                    <span class="radio-text">Léger</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="stade" value="modere" checked>
+                    <span class="radio-custom" aria-hidden="true"></span>
+                    <span class="radio-text">Modéré</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="stade" value="avance">
+                    <span class="radio-custom" aria-hidden="true"></span>
+                    <span class="radio-text">Avancé</span>
+                </label>
+            </div>
+        </article>
+
+        <!-- Q2 : Troubles visuels -->
+        <article class="question-card">
+            <div class="question-number">2</div>
+            <h2 class="question-label">Troubles visuels connus ?</h2>
+            <div class="oui-non-group" role="group" aria-label="Troubles visuels">
+                <button type="button" class="oui-non-btn" data-name="visuel" data-value="oui">Oui</button>
+                <button type="button" class="oui-non-btn active" data-name="visuel" data-value="non">Non</button>
+            </div>
+            <input type="hidden" name="visuel" value="non">
+        </article>
+
+        <!-- Q3 : Difficultés motrices -->
+        <article class="question-card">
+            <div class="question-number">3</div>
+            <h2 class="question-label">Difficultés motrices ou tremblements ?</h2>
+            <div class="oui-non-group" role="group" aria-label="Difficultés motrices">
+                <button type="button" class="oui-non-btn active" data-name="moteur" data-value="oui">Oui</button>
+                <button type="button" class="oui-non-btn" data-name="moteur" data-value="non">Non</button>
+            </div>
+            <input type="hidden" name="moteur" value="oui">
+        </article>
+
+        <!-- Q4 : Thèmes -->
+        <article class="question-card">
+            <div class="question-number">4</div>
+            <h2 class="question-label">Thèmes qui éveillent la personne</h2>
+            <div class="chips-group" role="group" aria-label="Thèmes préférés">
+                <button type="button" class="chip active" data-value="cuisine">Cuisine</button>
+                <button type="button" class="chip"        data-value="musique">Musique</button>
+                <button type="button" class="chip active" data-value="nature">Nature</button>
+                <button type="button" class="chip active" data-value="famille">Famille</button>
+                <button type="button" class="chip"        data-value="voyage">Voyage</button>
+                <button type="button" class="chip"        data-value="metier">Métier</button>
+            </div>
+            <p class="chips-hint" id="chips-hint">3 thème(s) sélectionné(s)</p>
+            <input type="hidden" name="themes" id="themes-input" value="cuisine,nature,famille">
+        </article>
+
+        <!-- Q5 : Durée d'attention -->
+        <article class="question-card">
+            <div class="question-number">5</div>
+            <h2 class="question-label">Durée maximale d'attention estimée</h2>
+            <div class="slider-wrap">
+                <input type="range" id="duree-slider" name="duree" min="5" max="30" step="5" value="15"
+                       aria-label="Durée en minutes">
+                <div class="slider-labels">
+                    <span>5 min</span>
+                    <span class="slider-value" id="slider-value">15 min</span>
+                    <span>30 min</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Bouton enregistrer -->
+        <button type="submit" class="btn-save" id="btn-save">
+            Enregistrer le profil
+        </button>
+
+        <p class="save-confirm" id="save-confirm" aria-live="polite" hidden>
+            ✓ Profil enregistré avec succès !
+        </p>
+
+    </form>
+
+</main>
+
+<script src="profile.js"></script>
+</body>
+</html>

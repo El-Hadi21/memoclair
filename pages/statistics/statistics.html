@@ -5,163 +5,142 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MemoClair - Statistiques</title>
     <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="../aidant/dashboard.css">
     <link rel="stylesheet" href="statistics.css">
 </head>
-<body class="statistics-body">
+<body class="aidant-body statistics-body">
 
 <nav class="navbar">
     <div class="navbar__logo">MemoClair</div>
     <div class="navbar__links">
-        <a href="../aidant/dashboard.html" class="nav-item">Tableau de bord</a>
-        <a href="#" class="nav-item active">Statistiques</a>
-        <a href="#" class="nav-item">Gérer les jeux</a>
-        <a href="../index/index.html" class="nav-item btn-logout">Déconnexion</a>
+        <a href="../aidant/dashboard.html"  class="nav-item">Tableau de bord</a>
+        <a href="../aidant/profile.html"    class="nav-item">Profil</a>
+        <a href="../aidant/media.html"      class="nav-item">Médias</a>
+        <a href="statistics.html"           class="nav-item active">Statistiques</a>
+        <a href="../index/index.html"       class="nav-item btn-logout">Déconnexion</a>
     </div>
 </nav>
 
 <main class="statistics-container">
 
+    <!-- En-tête -->
     <header class="statistics-header">
-        <h1 class="statistics-title">Statistiques de Jean-Pierre</h1>
-        <div class="period-selector">
-            <button class="period-btn active">Semaine</button>
-            <button class="period-btn">Mois</button>
-            <button class="period-btn">Année</button>
+        <div>
+            <h1 class="statistics-title">Suivi — Jean-Pierre</h1>
+            <p class="statistics-period">Semaine du 9 au 15 mars 2026</p>
+        </div>
+        <div class="period-selector" role="group" aria-label="Période">
+            <button class="period-btn active" data-period="semaine">Semaine</button>
+            <button class="period-btn"        data-period="mois">Mois</button>
+            <button class="period-btn"        data-period="annee">Année</button>
         </div>
     </header>
 
-    <section class="statistics-grid">
+    <!-- 3 cartes résumé -->
+    <section class="summary-grid" aria-label="Résumé">
 
-        <!-- Carte de progression globale -->
-        <article class="stat-card stat-card--wide">
+        <article class="stat-card stat-card--primary">
             <div class="stat-card__header">
-                <h3 class="stat-card__title">Progression globale</h3>
-                <span class="stat-card__icon">📊</span>
-            </div>
-            <div class="progress-chart">
-                <div class="progress-bar">
-                    <div class="progress-bar__fill" style="width: 75%;">
-                        <span class="progress-bar__label">75%</span>
-                    </div>
-                </div>
-                <p class="progress-text">Excellente progression cette semaine !</p>
-            </div>
-        </article>
-
-        <!-- Temps de jeu total -->
-        <article class="stat-card">
-            <div class="stat-card__header">
-                <h3 class="stat-card__title">Temps de jeu</h3>
-                <span class="stat-card__icon">⏱️</span>
-            </div>
-            <p class="stat-card__value">2h 15m</p>
-            <p class="stat-card__trend positive">+15% vs semaine dernière</p>
-        </article>
-
-        <!-- Sessions complétées -->
-        <article class="stat-card">
-            <div class="stat-card__header">
-                <h3 class="stat-card__title">Sessions</h3>
-                <span class="stat-card__icon">🎯</span>
-            </div>
-            <p class="stat-card__value">12</p>
-            <p class="stat-card__trend positive">+3 sessions</p>
-        </article>
-
-        <!-- Taux de réussite -->
-        <article class="stat-card">
-            <div class="stat-card__header">
-                <h3 class="stat-card__title">Taux de réussite</h3>
-                <span class="stat-card__icon">✅</span>
-            </div>
-            <p class="stat-card__value">85%</p>
-            <p class="stat-card__trend positive">+5%</p>
-        </article>
-
-        <!-- Score moyen -->
-        <article class="stat-card">
-            <div class="stat-card__header">
-                <h3 class="stat-card__title">Score moyen</h3>
-                <span class="stat-card__icon">⭐</span>
-            </div>
-            <p class="stat-card__value">420</p>
-            <p class="stat-card__trend neutral">Stable</p>
-        </article>
-
-        <!-- Jeux par catégorie -->
-        <article class="stat-card stat-card--tall">
-            <div class="stat-card__header">
-                <h3 class="stat-card__title">Jeux par catégorie</h3>
-                <span class="stat-card__icon">🎮</span>
-            </div>
-            <ul class="game-list">
-                <li class="game-item">
-                    <span class="game-name">Memory</span>
-                    <div class="game-bar">
-                        <div class="game-bar__fill" style="width: 80%"></div>
-                    </div>
-                    <span class="game-count">8 sessions</span>
-                </li>
-                <li class="game-item">
-                    <span class="game-name">Quiz</span>
-                    <div class="game-bar">
-                        <div class="game-bar__fill" style="width: 40%"></div>
-                    </div>
-                    <span class="game-count">4 sessions</span>
-                </li>
-            </ul>
-        </article>
-
-        <!-- Activité récente -->
-        <article class="stat-card stat-card--tall">
-            <div class="stat-card__header">
-                <h3 class="stat-card__title">Activité récente</h3>
+                <h3 class="stat-card__title">Sessions cette semaine</h3>
                 <span class="stat-card__icon">📅</span>
             </div>
-            <ul class="activity-list">
-                <li class="activity-item">
-                    <span class="activity-date">Aujourd'hui, 14h30</span>
-                    <p class="activity-desc">Memory - Score: 450 pts</p>
-                </li>
-                <li class="activity-item">
-                    <span class="activity-date">Hier, 15h00</span>
-                    <p class="activity-desc">Quiz - Score: 390 pts</p>
-                </li>
-                <li class="activity-item">
-                    <span class="activity-date">Il y a 2 jours, 16h15</span>
-                    <p class="activity-desc">Memory - Score: 480 pts</p>
-                </li>
-            </ul>
+            <p class="stat-card__value" id="val-sessions">5</p>
+            <!-- Sparkline SVG -->
+            <svg class="sparkline" viewBox="0 0 80 28" aria-hidden="true">
+                <polyline id="sparkline-line"
+                    points="0,22 13,18 26,24 40,10 53,14 66,8 80,8"
+                    fill="none" stroke="#6B8F71" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="80" cy="8" r="3.5" fill="#6B8F71"/>
+            </svg>
+            <p class="stat-card__trend positive" id="trend-sessions">+2 vs semaine dernière</p>
         </article>
 
-        <!-- Points forts -->
-        <article class="stat-card stat-card--highlight">
+        <article class="stat-card">
             <div class="stat-card__header">
-                <h3 class="stat-card__title">Points forts</h3>
-                <span class="stat-card__icon">💪</span>
+                <h3 class="stat-card__title">Durée moyenne</h3>
+                <span class="stat-card__icon">⏱️</span>
             </div>
-            <ul class="strengths-list">
-                <li>✓ Mémoire visuelle excellente</li>
-                <li>✓ Concentration améliorée</li>
-                <li>✓ Régularité dans la pratique</li>
-            </ul>
+            <p class="stat-card__value" id="val-duree">10 <span class="stat-unit">min</span></p>
+            <p class="stat-card__trend" id="trend-duree">par session</p>
         </article>
 
-        <!-- Recommandations -->
-        <article class="stat-card stat-card--highlight">
+        <article class="stat-card">
             <div class="stat-card__header">
-                <h3 class="stat-card__title">Recommandations</h3>
-                <span class="stat-card__icon">💡</span>
+                <h3 class="stat-card__title">Indice de facilitation</h3>
+                <span class="stat-card__icon">🌿</span>
             </div>
-            <p class="recommendation-text">Continuez avec le Memory, essayez d'augmenter progressivement le niveau de difficulté.</p>
-            <button class="btn-secondary">Voir les suggestions</button>
+            <span class="facilitation-badge facilitation-badge--moyen" id="facilitation-badge">Moyen</span>
+            <p class="stat-card__trend" id="trend-facilitation">Encourageant</p>
         </article>
 
     </section>
+
+    <!-- Timeline sessions -->
+    <section class="sessions-section">
+        <h2 class="sessions-title">5 dernières sessions</h2>
+
+        <ul class="sessions-list" id="sessions-list">
+
+            <li class="session-row">
+                <span class="session-mood" aria-label="Humeur positive">😊</span>
+                <div class="session-info">
+                    <p class="session-game">Mémoire &amp; Réminiscence</p>
+                    <p class="session-date">15 mars 2026, 14 h 30</p>
+                </div>
+                <span class="session-duration">12 min</span>
+            </li>
+
+            <li class="session-row">
+                <span class="session-mood" aria-label="Humeur positive">😊</span>
+                <div class="session-info">
+                    <p class="session-game">Associations du Quotidien</p>
+                    <p class="session-date">14 mars 2026, 10 h 15</p>
+                </div>
+                <span class="session-duration">8 min</span>
+            </li>
+
+            <li class="session-row">
+                <span class="session-mood" aria-label="Humeur neutre">😐</span>
+                <div class="session-info">
+                    <p class="session-game">Mémoire &amp; Réminiscence</p>
+                    <p class="session-date">12 mars 2026, 15 h 00</p>
+                </div>
+                <span class="session-duration">14 min</span>
+            </li>
+
+            <li class="session-row">
+                <span class="session-mood" aria-label="Humeur positive">😊</span>
+                <div class="session-info">
+                    <p class="session-game">Associations du Quotidien</p>
+                    <p class="session-date">11 mars 2026, 11 h 45</p>
+                </div>
+                <span class="session-duration">10 min</span>
+            </li>
+
+            <li class="session-row">
+                <span class="session-mood" aria-label="Humeur neutre">😐</span>
+                <div class="session-info">
+                    <p class="session-game">Mémoire &amp; Réminiscence</p>
+                    <p class="session-date">9 mars 2026, 16 h 20</p>
+                </div>
+                <span class="session-duration">6 min</span>
+            </li>
+
+        </ul>
+    </section>
+
+    <!-- Encart avertissement -->
+    <div class="disclaimer-box">
+        <span class="disclaimer-box__icon">ℹ️</span>
+        <p>
+            Ces données sont des <strong>indicateurs comportementaux</strong>, pas des mesures cliniques.
+            Croisez-les avec vos échelles MMSE et l'avis de votre équipe médicale.
+        </p>
+    </div>
 
 </main>
 
 <script src="statistics.js"></script>
 </body>
 </html>
-

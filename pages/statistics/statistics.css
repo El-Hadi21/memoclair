@@ -1,95 +1,57 @@
 /* pages/statistics/statistics.css */
 
-/* On annule les grosses polices du global.css pour l'aidant */
 .statistics-body {
-    font-size: 16px; /* Taille standard pour un adulte sans trouble visuel */
-    background-color: #F4F6F8; /* Gris très clair, style "Dashboard" classique */
-    display: block; /* On annule le flex center du global.css */
-    min-height: 100vh;
+    background-color: #F4F6F8;
 }
 
-/* --- BARRE DE NAVIGATION --- */
-.navbar {
-    background-color: #FFFFFF;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem;
-}
-
-.navbar__logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--color-primary);
-}
-
-.navbar__links {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-}
-
-.nav-item {
-    text-decoration: none;
-    color: #555;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-
-.nav-item:hover, .nav-item.active {
-    color: var(--color-secondary);
-}
-
-.btn-logout {
-    border: 1px solid #EAEAEA;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    color: #D32F2F; /* Rouge doux pour la déconnexion */
-}
-
-.btn-logout:hover {
-    background-color: #FFEBEE;
-    color: #D32F2F;
-}
-
-/* --- STRUCTURE DU CONTENU --- */
 .statistics-container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 2rem auto;
-    padding: 0 2rem;
+    padding: 0 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }
 
+/* --- EN-TÊTE --- */
 .statistics-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3rem;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 1.5rem;
 }
 
 .statistics-title {
     font-size: 2rem;
+    font-weight: 800;
     color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+
+.statistics-period {
+    font-size: 1rem;
+    color: var(--color-text-muted);
 }
 
 /* Sélecteur de période */
 .period-selector {
     display: flex;
     gap: 0.5rem;
-    background-color: #FFFFFF;
-    padding: 0.5rem;
+    background-color: #FFF;
+    padding: 0.4rem;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .period-btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.25rem;
     border: none;
     background-color: transparent;
     color: #666;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-family: inherit;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
@@ -97,44 +59,33 @@
 
 .period-btn:hover {
     background-color: #F4F6F8;
+    color: var(--color-text);
 }
 
 .period-btn.active {
-    background-color: var(--color-secondary);
-    color: #FFFFFF;
+    background-color: var(--color-primary);
+    color: #FFF;
 }
 
-/* --- GRILLE DE STATISTIQUES --- */
-.statistics-grid {
+/* --- 3 CARTES RÉSUMÉ --- */
+.summary-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
 }
 
-/* Cartes de statistiques */
 .stat-card {
-    background-color: #FFFFFF;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    border-top: 4px solid var(--color-secondary);
-    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: #FFF;
+    border-radius: 14px;
+    padding: 1.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    border-top: 4px solid var(--color-primary-mid);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-}
-
-.stat-card--wide {
-    grid-column: span 2;
-}
-
-.stat-card--tall {
-    grid-row: span 2;
-}
-
-.stat-card--highlight {
+.stat-card--primary {
     border-top-color: var(--color-primary);
 }
 
@@ -142,211 +93,192 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .stat-card__title {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: 700;
     color: #555;
-    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.85rem;
 }
 
 .stat-card__icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .stat-card__value {
     font-size: 2.5rem;
-    font-weight: bold;
+    font-weight: 800;
     color: var(--color-text);
-    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stat-unit {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #9CA3AF;
 }
 
 .stat-card__trend {
     font-size: 0.9rem;
     color: #666;
+    margin-top: 0.25rem;
 }
 
 .stat-card__trend.positive {
-    color: #27AE60;
+    color: var(--color-primary-dark);
     font-weight: 600;
 }
 
-.stat-card__trend.negative {
-    color: #E74C3C;
-    font-weight: 600;
+/* Sparkline */
+.sparkline {
+    width: 80px;
+    height: 28px;
+    overflow: visible;
+    margin: 0.25rem 0;
 }
 
-.stat-card__trend.neutral {
-    color: #95A5A6;
+/* Badge facilitation */
+.facilitation-badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    width: fit-content;
+    margin: 0.25rem 0;
 }
 
-/* --- PROGRESSION --- */
-.progress-chart {
-    margin-top: 1rem;
+.facilitation-badge--faible {
+    background-color: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FDE68A;
 }
 
-.progress-bar {
-    width: 100%;
-    height: 40px;
-    background-color: #E8EDF2;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 1rem;
+.facilitation-badge--moyen {
+    background-color: var(--color-primary-bg);
+    color: var(--color-primary-dark);
+    border: 1px solid var(--color-primary-mid);
 }
 
-.progress-bar__fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--color-secondary), #4A90E2);
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 1rem;
-    transition: width 0.6s ease;
+.facilitation-badge--eleve {
+    background-color: var(--color-primary-mid);
+    color: var(--color-primary-dark);
+    border: 1px solid var(--color-primary-light);
 }
 
-.progress-bar__label {
-    color: #FFFFFF;
-    font-weight: bold;
-    font-size: 1.1rem;
+/* --- TIMELINE SESSIONS --- */
+.sessions-section {
+    background-color: #FFF;
+    border-radius: 14px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 
-.progress-text {
-    color: var(--color-primary);
-    font-weight: 600;
-    text-align: center;
-    margin-top: 1rem;
+.sessions-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #EAEAEA;
 }
 
-/* --- LISTE DE JEUX --- */
-.game-list {
+.sessions-list {
     list-style: none;
-}
-
-.game-item {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
 }
 
-.game-name {
-    font-weight: 600;
-    color: var(--color-text);
+.session-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid #F0EFEC;
 }
 
-.game-bar {
-    width: 100%;
-    height: 20px;
-    background-color: #E8EDF2;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.game-bar__fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--color-primary), #4CAF50);
-    transition: width 0.6s ease;
-}
-
-.game-count {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-/* --- ACTIVITÉ RÉCENTE --- */
-.activity-list {
-    list-style: none;
-}
-
-.activity-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid #E8EDF2;
-}
-
-.activity-item:last-child {
+.session-row:last-child {
     border-bottom: none;
 }
 
-.activity-date {
-    font-size: 0.85rem;
-    color: #888;
-    display: block;
-    margin-bottom: 0.5rem;
+.session-mood {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+    line-height: 1;
 }
 
-.activity-desc {
-    color: var(--color-text);
-    font-weight: 500;
+.session-info {
+    flex: 1;
+    min-width: 0;
 }
 
-/* --- POINTS FORTS --- */
-.strengths-list {
-    list-style: none;
-}
-
-.strengths-list li {
-    padding: 0.75rem 0;
-    color: var(--color-text);
+.session-game {
     font-size: 1rem;
-    border-bottom: 1px solid #E8EDF2;
-}
-
-.strengths-list li:last-child {
-    border-bottom: none;
-}
-
-/* --- RECOMMANDATIONS --- */
-.recommendation-text {
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.btn-secondary {
-    background-color: var(--color-secondary);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    width: 100%;
+    color: var(--color-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.btn-secondary:hover {
-    background-color: #004494;
+.session-date {
+    font-size: 0.875rem;
+    color: #9CA3AF;
+    margin-top: 0.15rem;
+}
+
+.session-duration {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #555;
+    background-color: #F4F6F8;
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* --- ENCART AVERTISSEMENT --- */
+.disclaimer-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background-color: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-left: 4px solid #F59E0B;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+}
+
+.disclaimer-box__icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.disclaimer-box p {
+    font-size: 0.95rem;
+    color: #78350F;
+    line-height: 1.6;
+}
+
+.disclaimer-box strong {
+    color: #92400E;
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .navbar__links {
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
     .statistics-header {
         flex-direction: column;
-        align-items: flex-start;
     }
-
-    .statistics-grid {
+    .summary-grid {
         grid-template-columns: 1fr;
     }
-
-    .stat-card--wide, .stat-card--tall {
-        grid-column: auto;
-        grid-row: auto;
+    .sessions-section {
+        padding: 1.25rem;
     }
 }
-

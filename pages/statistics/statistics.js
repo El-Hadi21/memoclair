@@ -1,132 +1,142 @@
 // pages/statistics/statistics.js
 
-// Gestion du sélecteur de période
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    // Sélecteur de période
-    const periodButtons = document.querySelectorAll('.period-btn');
-
-    periodButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Retirer la classe active de tous les boutons
-            periodButtons.forEach(btn => btn.classList.remove('active'));
-
-            // Ajouter la classe active au bouton cliqué
-            this.classList.add('active');
-
-            // Mettre à jour les statistiques en fonction de la période
-            updateStatistics(this.textContent.trim());
-        });
-    });
-
-    // Animation des barres de progression au chargement
-    animateProgressBars();
-});
-
-// Fonction pour mettre à jour les statistiques
-function updateStatistics(period) {
-    console.log('Période sélectionnée:', period);
-
-    // Données fictives selon la période
+    // Données par période
     const data = {
-        'Semaine': {
-            tempsJeu: '2h 15m',
-            sessions: '12',
-            tauxReussite: '85%',
-            scoreMoyen: '420',
-            progression: '75%'
+        semaine: {
+            sessions: '5',
+            sessionsTrend: '+2 vs semaine dernière',
+            duree: '10',
+            dureeTrend: 'par session',
+            facilitation: 'Moyen',
+            facilitationTrend: 'Encourageant',
+            sparkline: [22, 18, 24, 10, 14, 8, 8],
+            sessionRows: [
+                { mood: '😊', game: 'Mémoire & Réminiscence',    date: '15 mars 2026, 14 h 30', duration: '12 min' },
+                { mood: '😊', game: 'Associations du Quotidien', date: '14 mars 2026, 10 h 15', duration: '8 min'  },
+                { mood: '😐', game: 'Mémoire & Réminiscence',    date: '12 mars 2026, 15 h 00', duration: '14 min' },
+                { mood: '😊', game: 'Associations du Quotidien', date: '11 mars 2026, 11 h 45', duration: '10 min' },
+                { mood: '😐', game: 'Mémoire & Réminiscence',    date: '9 mars 2026, 16 h 20',  duration: '6 min'  },
+            ],
         },
-        'Mois': {
-            tempsJeu: '9h 45m',
-            sessions: '48',
-            tauxReussite: '82%',
-            scoreMoyen: '405',
-            progression: '70%'
+        mois: {
+            sessions: '18',
+            sessionsTrend: '+4 vs mois dernier',
+            duree: '11',
+            dureeTrend: 'par session',
+            facilitation: 'Élevé',
+            facilitationTrend: 'Très bien',
+            sparkline: [20, 16, 22, 14, 10, 18, 12, 8, 14, 10, 6, 8],
+            sessionRows: [
+                { mood: '😊', game: 'Mémoire & Réminiscence',    date: '15 mars 2026, 14 h 30', duration: '12 min' },
+                { mood: '😊', game: 'Associations du Quotidien', date: '14 mars 2026, 10 h 15', duration: '8 min'  },
+                { mood: '😊', game: 'Mémoire & Réminiscence',    date: '10 mars 2026, 14 h 00', duration: '15 min' },
+                { mood: '😐', game: 'Associations du Quotidien', date: '7 mars 2026,  11 h 30', duration: '9 min'  },
+                { mood: '😊', game: 'Mémoire & Réminiscence',    date: '2 mars 2026,  15 h 45', duration: '11 min' },
+            ],
         },
-        'Année': {
-            tempsJeu: '115h 30m',
-            sessions: '580',
-            tauxReussite: '78%',
-            scoreMoyen: '385',
-            progression: '65%'
-        }
+        annee: {
+            sessions: '94',
+            sessionsTrend: '+11 vs an dernier',
+            duree: '9',
+            dureeTrend: 'par session',
+            facilitation: 'Moyen',
+            facilitationTrend: 'Stable',
+            sparkline: [24, 20, 18, 14, 22, 16, 10, 14, 8, 12, 8, 6],
+            sessionRows: [
+                { mood: '😊', game: 'Mémoire & Réminiscence',    date: '15 mars 2026, 14 h 30', duration: '12 min' },
+                { mood: '😐', game: 'Associations du Quotidien', date: '14 mars 2026, 10 h 15', duration: '8 min'  },
+                { mood: '😊', game: 'Mémoire & Réminiscence',    date: '10 mars 2026, 14 h 00', duration: '15 min' },
+                { mood: '😐', game: 'Associations du Quotidien', date: '7 mars 2026,  11 h 30', duration: '9 min'  },
+                { mood: '😊', game: 'Mémoire & Réminiscence',    date: '2 mars 2026,  15 h 45', duration: '11 min' },
+            ],
+        },
     };
 
-    const currentData = data[period] || data['Semaine'];
+    const facilClasses = {
+        'Faible': 'facilitation-badge--faible',
+        'Moyen':  'facilitation-badge--moyen',
+        'Élevé':  'facilitation-badge--eleve',
+    };
 
-    // Mettre à jour les valeurs dans les cartes
-    const statCards = document.querySelectorAll('.stat-card');
+    // Éléments DOM
+    const periodBtns      = document.querySelectorAll('.period-btn');
+    const valSessions     = document.getElementById('val-sessions');
+    const trendSessions   = document.getElementById('trend-sessions');
+    const valDuree        = document.getElementById('val-duree');
+    const trendDuree      = document.getElementById('trend-duree');
+    const facilBadge      = document.getElementById('facilitation-badge');
+    const trendFacil      = document.getElementById('trend-facilitation');
+    const sparklineLine   = document.getElementById('sparkline-line');
+    const sessionsList    = document.getElementById('sessions-list');
 
-    statCards.forEach(card => {
-        const title = card.querySelector('.stat-card__title')?.textContent;
-        const valueElement = card.querySelector('.stat-card__value');
-
-        if (valueElement) {
-            switch(title) {
-                case 'Temps de jeu':
-                    valueElement.textContent = currentData.tempsJeu;
-                    break;
-                case 'Sessions':
-                    valueElement.textContent = currentData.sessions;
-                    break;
-                case 'Taux de réussite':
-                    valueElement.textContent = currentData.tauxReussite;
-                    break;
-                case 'Score moyen':
-                    valueElement.textContent = currentData.scoreMoyen;
-                    break;
-            }
-        }
-
-        // Mettre à jour la barre de progression
-        const progressFill = card.querySelector('.progress-bar__fill');
-        if (progressFill) {
-            progressFill.style.width = currentData.progression;
-            const label = progressFill.querySelector('.progress-bar__label');
-            if (label) {
-                label.textContent = currentData.progression;
-            }
-        }
+    // Gestion de la période
+    periodBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            periodBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            updateUI(this.dataset.period);
+        });
     });
-}
 
-// Animation des barres de progression
-function animateProgressBars() {
-    const progressBars = document.querySelectorAll('.progress-bar__fill');
-    const gameBars = document.querySelectorAll('.game-bar__fill');
+    function updateUI(period) {
+        const d = data[period] || data.semaine;
 
-    // Animer avec un délai
-    setTimeout(() => {
-        progressBars.forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0';
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 100);
-        });
+        // Valeurs numériques
+        if (valSessions)   valSessions.textContent   = d.sessions;
+        if (trendSessions) trendSessions.textContent = d.sessionsTrend;
+        if (valDuree)      valDuree.innerHTML = d.duree + ' <span class="stat-unit">min</span>';
+        if (trendDuree)    trendDuree.textContent = d.dureeTrend;
 
-        gameBars.forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0';
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 100);
-        });
-    }, 200);
-}
+        // Badge facilitation
+        if (facilBadge) {
+            facilBadge.textContent = d.facilitation;
+            facilBadge.className   = 'facilitation-badge ' + (facilClasses[d.facilitation] || facilClasses['Moyen']);
+        }
+        if (trendFacil) trendFacil.textContent = d.facilitationTrend;
 
-// Export de données (fonctionnalité bonus)
-function exportStatistics() {
-    const stats = {
-        period: document.querySelector('.period-btn.active').textContent,
-        tempsJeu: document.querySelector('.stat-card:nth-child(2) .stat-card__value').textContent,
-        sessions: document.querySelector('.stat-card:nth-child(3) .stat-card__value').textContent,
-        tauxReussite: document.querySelector('.stat-card:nth-child(4) .stat-card__value').textContent,
-        scoreMoyen: document.querySelector('.stat-card:nth-child(5) .stat-card__value').textContent,
-        exportDate: new Date().toLocaleString('fr-FR')
-    };
+        // Sparkline
+        if (sparklineLine && d.sparkline) {
+            const pts    = d.sparkline;
+            const width  = 80;
+            const height = 28;
+            const max    = Math.max(...pts);
+            const min    = Math.min(...pts);
+            const range  = max - min || 1;
+            const pointsStr = pts.map(function (v, i) {
+                const x = ((i / (pts.length - 1)) * width).toFixed(1);
+                const y = (height - ((v - min) / range) * (height - 4) - 2).toFixed(1);
+                return x + ',' + y;
+            }).join(' ');
+            sparklineLine.setAttribute('points', pointsStr);
 
-    console.log('Export des statistiques:', stats);
-    alert('Statistiques exportées ! (Voir la console)');
-}
+            // Mettre à jour le cercle final
+            const lastY = (height - ((pts[pts.length-1] - min) / range) * (height - 4) - 2).toFixed(1);
+            const dot   = sparklineLine.nextElementSibling;
+            if (dot) {
+                dot.setAttribute('cx', width);
+                dot.setAttribute('cy', lastY);
+            }
+        }
 
+        // Timeline sessions
+        if (sessionsList) {
+            sessionsList.innerHTML = d.sessionRows.map(function (s) {
+                return `
+                    <li class="session-row">
+                        <span class="session-mood" aria-label="Humeur">${s.mood}</span>
+                        <div class="session-info">
+                            <p class="session-game">${s.game}</p>
+                            <p class="session-date">${s.date}</p>
+                        </div>
+                        <span class="session-duration">${s.duration}</span>
+                    </li>
+                `;
+            }).join('');
+        }
+    }
+
+    // Initialisation
+    updateUI('semaine');
+});
