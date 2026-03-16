@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoClair - Espace Famille</title>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="dashboard-familial.css">
+</head>
+<body class="familial-body">
+
+<nav class="navbar-familial">
+    <div class="navbar-familial__logo">MemoClair <span>Famille</span></div>
+    <div class="navbar-familial__links">
+        <a href="dashboard-familial.html" class="nav-item active">Accueil</a>
+        <a href="media.html" class="nav-item">Photos</a>
+        <a href="../index/index.html" class="nav-item btn-logout">Déconnexion</a>
+    </div>
+</nav>
+
+<main class="dashboard-container">
+
+    <header class="dashboard-header">
+        <h1 class="dashboard-title">Bonjour, Sophie</h1>
+        <p class="dashboard-subtitle">Voici un petit résumé de l'activité de votre proche.</p>
+    </header>
+
+    <section class="dashboard-grid">
+
+        <article class="stat-card">
+            <div class="stat-card__header">
+                <h3 class="stat-card__title">Temps de jeu partagé</h3>
+                <span class="stat-card__icon" aria-hidden="true">⏱️</span>
+            </div>
+            <p class="stat-card__value">50 min</p>
+            <p class="stat-card__trend positive">Une belle semaine !</p>
+        </article>
+
+        <article class="action-card family-action">
+            <h3 class="action-card__title">Album Photo</h3>
+            <p class="action-card__text">
+                Ajoutez des photos de famille. Elles apparaîtront dans le jeu "Mémoire & Réminiscence" pour stimuler ses souvenirs.
+            </p>
+            <a href="media.html" class="btn-family">Ajouter des photos</a>
+        </article>
+
+    </section>
+
+</main>
+
+</body>
+</html>
