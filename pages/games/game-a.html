@@ -12,7 +12,6 @@
 
 <main class="game-container">
 
-    <!-- En-tête -->
     <header class="game-header">
         <a href="games.html" class="btn-back" aria-label="Retour aux jeux">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -24,33 +23,23 @@
         <h1 class="game-title">Associations du Quotidien</h1>
     </header>
 
-    <!-- Consigne -->
     <p class="game-instruction">Quel objet va avec cette image ?</p>
 
-    <!-- Image centrale -->
     <div class="central-image" role="img" aria-label="Une tasse de café">
         <svg viewBox="0 0 200 180" aria-hidden="true">
-            <!-- Steam -->
             <path d="M60 40 Q64 26 60 16" fill="none" stroke="#A8C4A2" stroke-width="5" stroke-linecap="round"/>
             <path d="M84 32 Q88 18 84 8"  fill="none" stroke="#A8C4A2" stroke-width="5" stroke-linecap="round"/>
             <path d="M108 40 Q112 26 108 16" fill="none" stroke="#A8C4A2" stroke-width="5" stroke-linecap="round"/>
-            <!-- Corps -->
             <path d="M36 62 L44 152 Q44 162 100 162 Q156 162 156 152 L164 62 Z" fill="#D4A96A"/>
             <line x1="36" y1="62" x2="164" y2="62" stroke="#B8854A" stroke-width="3"/>
-            <!-- Liquide -->
             <ellipse cx="100" cy="78" rx="52" ry="12" fill="#8B5E3C"/>
-            <!-- Anse -->
-            <path d="M156 90 Q188 90 188 116 Q188 142 156 138"
-                  fill="none" stroke="#B8854A" stroke-width="12" stroke-linecap="round"/>
-            <!-- Soucoupe -->
+            <path d="M156 90 Q188 90 188 116 Q188 142 156 138" fill="none" stroke="#B8854A" stroke-width="12" stroke-linecap="round"/>
             <ellipse cx="100" cy="162" rx="64" ry="12" fill="#C49060"/>
         </svg>
     </div>
 
-    <!-- Choix de réponse -->
     <section class="choices" aria-label="Choisissez la bonne réponse">
 
-        <!-- Choix 1 : Assiette -->
         <button class="choice-btn" data-correct="false" aria-label="Une assiette">
             <div class="choice-img">
                 <svg viewBox="0 0 100 100" aria-hidden="true">
@@ -63,45 +52,21 @@
             <span class="choice-label">Assiette</span>
         </button>
 
-        <!-- Choix 2 : Tasse (correct) -->
         <button class="choice-btn choice-btn--correct" data-correct="true" aria-label="Une tasse">
             <div class="choice-img">
                 <svg viewBox="0 0 100 100" aria-hidden="true">
                     <path d="M18 34 L23 76 Q23 82 50 82 Q77 82 77 76 L82 34 Z" fill="#D4A96A"/>
                     <ellipse cx="50" cy="44" rx="26" ry="6" fill="#8B5E3C"/>
-                    <path d="M77 46 Q94 46 94 59 Q94 72 77 70"
-                          fill="none" stroke="#B8854A" stroke-width="7" stroke-linecap="round"/>
+                    <path d="M77 46 Q94 46 94 59 Q94 72 77 70" fill="none" stroke="#B8854A" stroke-width="7" stroke-linecap="round"/>
                     <ellipse cx="50" cy="82" rx="32" ry="6" fill="#C49060"/>
                 </svg>
             </div>
             <span class="choice-label">Tasse</span>
         </button>
 
-        <!-- Choix 3 : Livre -->
-        <button class="choice-btn" data-correct="false" aria-label="Un livre">
-            <div class="choice-img">
-                <svg viewBox="0 0 100 100" aria-hidden="true">
-                    <rect x="18" y="15" width="64" height="76" rx="4" fill="#A8C4A2"/>
-                    <rect x="24" y="15" width="58" height="76" rx="3" fill="#F5F0E8"/>
-                    <rect x="18" y="15" width="10" height="76" rx="4" fill="#6B8F71"/>
-                    <line x1="34" y1="35" x2="72" y2="35" stroke="#D4C5A9" stroke-width="2.5"/>
-                    <line x1="34" y1="47" x2="72" y2="47" stroke="#D4C5A9" stroke-width="2.5"/>
-                    <line x1="34" y1="59" x2="72" y2="59" stroke="#D4C5A9" stroke-width="2.5"/>
-                    <line x1="34" y1="71" x2="60" y2="71" stroke="#D4C5A9" stroke-width="2.5"/>
-                </svg>
-            </div>
-            <span class="choice-label">Livre</span>
-        </button>
-
     </section>
 
-    <!-- Feedback (caché au départ) -->
     <div class="feedback" id="feedback" aria-live="polite" hidden></div>
-
-    <!-- Bouton Passer (discret, sans style de bouton) -->
-    <div class="skip-wrap">
-        <button class="btn-passer" id="btn-passer">Passer</button>
-    </div>
 
 </main>
 
