@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoClair - Partage de Souvenirs</title>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="game-duo.css">
+</head>
+<body class="duo-body">
+
+<header class="game-header">
+    <a href="games.html" class="btn-back">
+        <span aria-hidden="true">⬅️</span> Quitter
+    </a>
+    <h1 class="main-title">Partage de Souvenirs</h1>
+    <div style="width: 120px;"></div>
+</header>
+
+<main class="duo-layout">
+
+    <section class="shared-media-zone">
+        <div id="media-container"></div>
+        <h2 class="shared-question" id="question-text">Chargement...</h2>
+    </section>
+
+    <section class="split-interaction-zone">
+
+        <div class="player-zone aidant-zone">
+            <h3 class="zone-title">L'avis d'Isabelle</h3>
+            <div class="choices" id="choices-aidant">
+                <button class="choice-btn" data-player="aidant" data-index="0">Choix 1</button>
+                <button class="choice-btn" data-player="aidant" data-index="1">Choix 2</button>
+            </div>
+            <div class="waiting-msg hidden" id="wait-aidant">En attente de Marcel...</div>
+        </div>
+
+        <div class="vertical-divider"></div>
+
+        <div class="player-zone accueilli-zone">
+            <h3 class="zone-title">Le choix de Marcel</h3>
+            <div class="choices" id="choices-accueilli">
+                <button class="choice-btn" data-player="accueilli" data-index="0">Choix 1</button>
+                <button class="choice-btn" data-player="accueilli" data-index="1">Choix 2</button>
+            </div>
+            <div class="waiting-msg hidden" id="wait-accueilli">En attente d'Isabelle...</div>
+        </div>
+
+    </section>
+
+    <div id="duo-feedback" class="feedback-overlay hidden">
+        <div class="feedback-content">
+            <div class="feedback-icon" id="feedback-icon">🎉</div>
+            <h2 id="feedback-message">On est d'accord !</h2>
+            <p id="feedback-submessage">Texte dynamique</p>
+            <button id="btn-next" class="btn-primary">Passer à la suite</button>
+        </div>
+    </div>
+
+</main>
+
+<script src="game-duo.js"></script>
+</body>
+</html>

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- LOGIQUE PATIENT ---
 
     function getCurrentPatient() {
-        return localStorage.getItem('selectedPatient') || 'Jean';
+        return localStorage.getItem('selectedPatient') || 'Marcel';
     }
 
     // Charger les médias sauvegardés pour le patient
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             items.forEach(item => renderThumb(item.name, item.type));
         } else {
             // Optionnel: charger des données par défaut si vide
-            if(patient === 'Jean') {
+            if(patient === 'Marcel') {
                 renderThumb('Jardin 2019', 'image');
                 renderThumb('Famille Noël', 'image');
             }

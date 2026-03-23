@@ -26,3 +26,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const duoToggle = document.getElementById('duo-mode-toggle');
+    const btnJouerB = document.getElementById('btn-jouer-b');
+
+    if (duoToggle && btnJouerB) {
+        duoToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                // Si coché, on lance le vrai jeu Duo
+                btnJouerB.href = "game-duo.html";
+            } else {
+                // Sinon, jeu solo classique
+                btnJouerB.href = "game-b.html";
+            }
+        });
+    }
+});

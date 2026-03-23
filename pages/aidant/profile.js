@@ -67,7 +67,7 @@ function updatePageForPatient(name) {
 
 // Au chargement initial
 window.addEventListener('DOMContentLoaded', () => {
-    const initialPatient = localStorage.getItem('selectedPatient') || 'Jean';
+    const initialPatient = localStorage.getItem('selectedPatient') || 'Marcel';
     updatePageForPatient(initialPatient);
 });
 

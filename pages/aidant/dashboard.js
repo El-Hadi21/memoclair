@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
     const patientsStats = {
-        'Jean': { time: '50 min', timeTrend: '+15% vs semaine dernière', game: 'Mémoire', gameSessions: '5 sessions' },
-        'Marie': { time: '1h 20', timeTrend: '+30% vs semaine dernière', game: 'Proverbes', gameSessions: '8 sessions' },
-        'Pierre': { time: '25 min', timeTrend: '-10% vs semaine dernière', game: 'Musique', gameSessions: '2 sessions' }
+        'Marcel': { time: '50 min', timeTrend: '+15% vs semaine dernière', game: 'Mémoire', gameSessions: '5 sessions' },
+        'Paul': { time: '1h 20', timeTrend: '+30% vs semaine dernière', game: 'Quotidien', gameSessions: '8 sessions' },
+        'Jean': { time: '25 min', timeTrend: '-10% vs semaine dernière', game: 'Musique', gameSessions: '2 sessions' }
     };
 
     function updateUI() {
-        const patient = localStorage.getItem('selectedPatient') || 'Jean';
-        const data = patientsStats[patient] || patientsStats['Jean'];
+        const patient = localStorage.getItem('selectedPatient') || 'Marcel';
+        const data = patientsStats[patient] || patientsStats['Marcel'];
 
         document.getElementById('patient-name').textContent = patient;
         document.querySelectorAll('.current-patient-name').forEach(el => el.textContent = patient);

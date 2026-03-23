@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 sessionRows: [{ mood: '😊', game: 'Multi-jeux', date: 'Janvier 2026', duration: '9 min' }]
             }
         },
-        'Marie': {
+        'Paul': {
             semaine: {
                 periodLabel: 'Semaine du 9 au 15 mars 2026',
                 sessions: '8',
@@ -64,15 +64,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 facilitationTrend: 'Excellente forme',
                 sparkline: [10, 20, 15, 25, 30, 20, 28],
                 attentionWeeks: [12, 14, 14, 15],
-                attentionNote: '🌟 Marie montre une concentration exceptionnelle cette semaine.',
+                attentionNote: '🌟 Paul montre une concentration exceptionnelle cette semaine.',
                 attentionBadge: '+2 min sur 4 semaines',
                 sessionRows: [
                     { mood: '😇', game: 'Proverbes', date: '14 mars, 10h15', duration: '20 min' },
                     { mood: '😊', game: 'Musique', date: '11 mars, 16h00', duration: '15 min' }
                 ]
             },
-            mois: { /* Données Marie Mois... */ },
-            annee: { /* Données Marie Année... */ }
+            mois: { /* Données Paul Mois... */ },
+            annee: { /* Données Paul Année... */ }
         }
     };
 

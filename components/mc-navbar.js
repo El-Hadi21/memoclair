@@ -35,9 +35,9 @@ class McNavbar extends HTMLElement {
     
     <div class="navbar__center">
         <select id="patient-selector" class="patient-select">
+            <option value="Marcel" ${currentPatient === 'Marcel' ? 'selected' : ''}>Marcel</option>
+            <option value="Paul" ${currentPatient === 'Paul' ? 'selected' : ''}>Paul</option>
             <option value="Jean" ${currentPatient === 'Jean' ? 'selected' : ''}>Jean</option>
-            <option value="Marie" ${currentPatient === 'Marie' ? 'selected' : ''}>Marie</option>
-            <option value="Pierre" ${currentPatient === 'Pierre' ? 'selected' : ''}>Pierre</option>
         </select>
     </div>
 
