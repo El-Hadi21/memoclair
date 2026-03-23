@@ -8,45 +8,55 @@
     <link rel="stylesheet" href="dashboard.css">
     <script src="../../components/mc-navbar.js" defer></script>
     <script src="../../components/mc-stat-card.js" defer></script>
+    <script src="dashboard.js" defer></script>
 </head>
 <body class="aidant-body">
 
 <mc-navbar active="dashboard" dir="aidant"></mc-navbar>
 
 <main class="dashboard-container">
-
     <header class="dashboard-header">
-        <h1 class="dashboard-title">Bonjour, Nathalie</h1>
-        <p class="dashboard-subtitle">Voici le résumé de l'activité de Marcel cette semaine.</p>
+        <h1 class="dashboard-title">Bonjour, Nathalie 👋</h1>
+        <p class="dashboard-subtitle">
+            Voici le résumé de l'activité de <span id="patient-name" class="patient-highlight">Jean</span> cette semaine.
+        </p>
     </header>
 
     <section class="dashboard-grid">
 
         <mc-stat-card
-            icon="⏱️"
-            card-title="Temps de jeu"
-            value="50 min"
-            trend="+15% par rapport à la semaine dernière"
-            trend-type="positive">
+                id="stat-time"
+                icon="⏱️"
+                card-title="Temps de jeu"
+                value="50 min"
+                trend="+15% vs semaine dernière"
+                trend-type="positive">
         </mc-stat-card>
 
         <mc-stat-card
-            icon="🎮"
-            card-title="Jeu préféré"
-            value="Mémoire"
-            trend="5 sessions cette semaine">
+                id="stat-game"
+                icon="🎮"
+                card-title="Jeu préféré"
+                value="Mémoire"
+                trend="5 sessions actives">
         </mc-stat-card>
 
         <article class="action-card">
+            <div class="action-card__badge">Recommandé</div>
             <h3 class="action-card__title">Personnalisation</h3>
             <p class="action-card__text">
-                Ajoutez des photos de famille pour enrichir le jeu Mémoire &amp; Réminiscence.
+                Enrichissez le jeu de <span class="current-patient-name">Jean</span> avec des souvenirs.
             </p>
-            <a href="media.html" class="btn-primary">Ajouter des médias</a>
+            <a href="media.html" class="btn-action">
+                <span>Ajouter des médias</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
         </article>
 
     </section>
-
 </main>
 
 </body>

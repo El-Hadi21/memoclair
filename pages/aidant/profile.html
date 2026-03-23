@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MemoClair - Profil</title>
+    <title>MemoClair - Profil de Patient</title>
     <link rel="stylesheet" href="../../styles/global.css">
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="profile.css">
@@ -14,101 +14,89 @@
 <mc-navbar active="profile" dir="aidant"></mc-navbar>
 
 <main class="profile-container">
-
     <header class="profile-header">
-        <h1 class="profile-title">Profil de Marcel</h1>
-        <p class="profile-subtitle">Ces informations permettent d'adapter les jeux à la personne.</p>
+        <h1 class="profile-title">Configuration de <span id="patient-name">Jean</span></h1>
+        <p class="profile-subtitle">Ajustez les paramètres de jeu et d'accessibilité.</p>
     </header>
 
-    <form class="profile-form" id="profile-form" novalidate>
+    <section class="question-card">
+        <div class="card-header">
+            <span class="question-number">1</span>
+            <h3 class="question-label">Niveau de difficulté</h3>
+        </div>
 
-        <!-- Q1 : Stade estimé -->
-        <article class="question-card">
-            <div class="question-number">1</div>
-            <h2 class="question-label">Stade estimé de la maladie</h2>
-            <div class="radio-group" role="group" aria-label="Stade de la maladie">
-                <label class="radio-option">
-                    <input type="radio" name="stade" value="leger">
-                    <span class="radio-custom" aria-hidden="true"></span>
-                    <span class="radio-text">Léger</span>
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="stade" value="modere" checked>
-                    <span class="radio-custom" aria-hidden="true"></span>
-                    <span class="radio-text">Modéré</span>
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="stade" value="avance">
-                    <span class="radio-custom" aria-hidden="true"></span>
-                    <span class="radio-text">Avancé</span>
-                </label>
-            </div>
-        </article>
+        <div class="chips-group">
+            <button class="chip active" onclick="setPreset('facile', this)">Facile</button>
+            <button class="chip" onclick="setPreset('moyen', this)">Moyen</button>
+            <button class="chip" onclick="setPreset('difficile', this)">Difficile</button>
+            <button class="chip" onclick="setPreset('custom', this)">Personnalisé</button>
+        </div>
 
-        <!-- Q2 : Troubles visuels -->
-        <article class="question-card">
-            <div class="question-number">2</div>
-            <h2 class="question-label">Troubles visuels connus ?</h2>
-            <div class="oui-non-group" role="group" aria-label="Troubles visuels">
-                <button type="button" class="oui-non-btn" data-name="visuel" data-value="oui">Oui</button>
-                <button type="button" class="oui-non-btn active" data-name="visuel" data-value="non">Non</button>
-            </div>
-            <input type="hidden" name="visuel" value="non">
-        </article>
+        <div id="preset-summary" class="preset-info-box">
+        </div>
 
-        <!-- Q3 : Difficultés motrices -->
-        <article class="question-card">
-            <div class="question-number">3</div>
-            <h2 class="question-label">Difficultés motrices ou tremblements ?</h2>
-            <div class="oui-non-group" role="group" aria-label="Difficultés motrices">
-                <button type="button" class="oui-non-btn active" data-name="moteur" data-value="oui">Oui</button>
-                <button type="button" class="oui-non-btn" data-name="moteur" data-value="non">Non</button>
-            </div>
-            <input type="hidden" name="moteur" value="oui">
-        </article>
-
-        <!-- Q4 : Thèmes -->
-        <article class="question-card">
-            <div class="question-number">4</div>
-            <h2 class="question-label">Thèmes qui éveillent la personne</h2>
-            <div class="chips-group" role="group" aria-label="Thèmes préférés">
-                <button type="button" class="chip active" data-value="cuisine">Cuisine</button>
-                <button type="button" class="chip"        data-value="musique">Musique</button>
-                <button type="button" class="chip active" data-value="nature">Nature</button>
-                <button type="button" class="chip active" data-value="famille">Famille</button>
-                <button type="button" class="chip"        data-value="voyage">Voyage</button>
-                <button type="button" class="chip"        data-value="metier">Métier</button>
-            </div>
-            <p class="chips-hint" id="chips-hint">3 thème(s) sélectionné(s)</p>
-            <input type="hidden" name="themes" id="themes-input" value="cuisine,nature,famille">
-        </article>
-
-        <!-- Q5 : Durée d'attention -->
-        <article class="question-card">
-            <div class="question-number">5</div>
-            <h2 class="question-label">Durée maximale d'attention estimée</h2>
-            <div class="slider-wrap">
-                <input type="range" id="duree-slider" name="duree" min="5" max="30" step="5" value="15"
-                       aria-label="Durée en minutes">
-                <div class="slider-labels">
-                    <span>5 min</span>
-                    <span class="slider-value" id="slider-value">15 min</span>
-                    <span>30 min</span>
+        <div id="custom-controls" class="custom-panel" style="display: none;">
+            <div class="input-row">
+                <label>Nombre de questions</label>
+                <div class="counter">
+                    <button type="button" onclick="changeValue('questions', -1)">−</button>
+                    <input type="number" id="questions" value="10" readonly>
+                    <button type="button" onclick="changeValue('questions', 1)">+</button>
                 </div>
             </div>
-        </article>
 
-        <!-- Bouton enregistrer -->
-        <button type="submit" class="btn-save" id="btn-save">
-            Enregistrer le profil
-        </button>
+            <div class="input-row">
+                <label>Réponses par question</label>
+                <div class="counter">
+                    <button type="button" onclick="changeValue('reponses', -1)">−</button>
+                    <input type="number" id="reponses" value="3" readonly>
+                    <button type="button" onclick="changeValue('reponses', 1)">+</button>
+                </div>
+            </div>
 
-        <p class="save-confirm" id="save-confirm" aria-live="polite" hidden>
-            ✓ Profil enregistré avec succès !
-        </p>
+            <div class="input-row">
+                <label>Inclure des images</label>
+                <label class="switch">
+                    <input type="checkbox" id="img-toggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
 
-    </form>
+            <div class="input-row">
+                <label>Délai avant indice (sec.)</label>
+                <input type="number" id="duration" class="small-number-input" value="10">
+            </div>
+        </div>
+    </section>
 
+    <section class="question-card">
+        <div class="card-header">
+            <span class="question-number">2</span>
+            <h3 class="question-label">Accessibilité visuelle</h3>
+        </div>
+
+        <div class="input-group-vertical">
+            <label class="sub-label">Taille du texte</label>
+            <div class="chips-group">
+                <button class="chip" onclick="updateFontSize('16px', this)">Petit</button>
+                <button class="chip active" onclick="updateFontSize('20px', this)">Moyen</button>
+                <button class="chip" onclick="updateFontSize('28px', this)">Grand</button>
+            </div>
+            <div id="preview-box" class="preview-area">
+                Aperçu du texte pour le patient
+            </div>
+        </div>
+
+        <div class="input-row">
+            <label class="sub-label">Mode contraste élevé</label>
+            <label class="switch">
+                <input type="checkbox" id="contrast-toggle" onchange="toggleContrast()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </section>
+
+    <button class="btn-save" onclick="saveSettings()">Enregistrer le profil</button>
 </main>
 
 <script src="profile.js"></script>

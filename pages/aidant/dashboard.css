@@ -1,75 +1,26 @@
 /* pages/aidant/dashboard.css */
 
+:root {
+    --color-primary: #6B8F71;
+    --color-primary-dark: #5A7860;
+    --color-primary-light: #D5E9D7;
+    --color-secondary: #FAD07A;
+    --color-text: #2D3436;
+    --color-text-muted: #636E72;
+    --bg-gray: #F8FAFB;
+    --shadow: 0 10px 30px rgba(107, 143, 113, 0.08);
+}
+
 .aidant-body {
-    font-size: 16px;
-    background-color: #F4F6F8;
-    display: block;
-    min-height: 100vh;
+    margin: 0;
+    background-color: var(--bg-gray);
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
 }
 
-/* --- BARRE DE NAVIGATION --- */
-.navbar {
-    background-color: #FFFFFF;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.navbar__logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--color-primary);
-}
-
-.navbar__links {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-}
-
-.nav-item {
-    text-decoration: none;
-    color: #555;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: color 0.2s;
-    padding: 0.4rem 0;
-    border-bottom: 2px solid transparent;
-}
-
-.nav-item:hover,
-.nav-item.active {
-    color: var(--color-primary);
-    border-bottom-color: var(--color-primary);
-}
-
-/* Déconnexion — gris neutre, sans rouge */
-.btn-logout {
-    border: 1px solid #DDDAD5;
-    border-bottom: 1px solid #DDDAD5;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    color: #6B7280;
-    background-color: #F9F7F4;
-    font-weight: 600;
-    transition: all 0.2s;
-}
-
-.btn-logout:hover {
-    background-color: #EAEAEA;
-    color: #374151;
-    border-color: #CCC;
-}
-
-/* --- CONTENU DASHBOARD --- */
 .dashboard-container {
-    max-width: 1100px;
-    margin: 2rem auto;
+    max-width: 1200px;
+    margin: 3rem auto;
     padding: 0 2rem;
 }
 
@@ -78,116 +29,95 @@
 }
 
 .dashboard-title {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--color-text);
-    margin-bottom: 0.5rem;
-}
-
-.dashboard-subtitle {
-    color: #666;
-    font-size: 1rem;
-}
-
-/* --- GRILLE --- */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.stat-card,
-.action-card {
-    background-color: #FFFFFF;
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-    border-top: 4px solid var(--color-primary);
-}
-
-.action-card {
-    border-top-color: var(--color-secondary);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-}
-
-.stat-card__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.stat-card__title,
-.action-card__title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #555;
-}
-
-.stat-card__icon {
-    font-size: 1.5rem;
-}
-
-.stat-card__value {
     font-size: 2.5rem;
     font-weight: 800;
-    color: var(--color-text);
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.5rem 0;
 }
 
-.stat-card__trend {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.stat-card__trend.positive {
+.patient-highlight {
     color: var(--color-primary-dark);
-    font-weight: 600;
+    border-bottom: 4px solid var(--color-secondary);
+}
+
+/* LA GRILLE : 3 colonnes égales */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Force les 3 colonnes */
+    gap: 2rem;
+    align-items: stretch;
+}
+
+/* Cartes statistiques */
+mc-stat-card {
+    display: block;
+    background: white;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+mc-stat-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Carte Action */
+.action-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--color-primary-light);
+    display: flex;
+    flex-direction: column;
+}
+
+.action-card__badge {
+    background: var(--color-secondary);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    width: fit-content;
+    margin-bottom: 1rem;
+}
+
+.action-card__title {
+    font-size: 1.4rem;
+    margin: 0 0 0.5rem 0;
 }
 
 .action-card__text {
-    color: #555;
+    color: var(--color-text-muted);
     font-size: 0.95rem;
-    line-height: 1.5;
-    flex: 1;
+    flex-grow: 1; /* Pousse le bouton vers le bas */
+    margin-bottom: 1.5rem;
 }
 
-.btn-primary {
-    display: inline-block;
-    background-color: var(--color-primary);
-    color: #FFF;
+.btn-action {
+    background: var(--color-primary);
+    color: white;
     text-decoration: none;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 10px;
-    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
     font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-.btn-primary:hover {
-    background-color: var(--color-primary-dark);
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-    }
-    .navbar__links {
-        gap: 0.75rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+/* RESPONSIVE */
+@media (max-width: 1024px) {
     .dashboard-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablettes */
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* 1 colonne sur mobile */
+    }
+    .dashboard-title {
+        font-size: 2rem;
     }
 }

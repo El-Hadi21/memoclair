@@ -87,3 +87,86 @@ body {
     font-size: var(--font-size-body);
     line-height: 1.5;
 }
+
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 70px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.navbar__center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.patient-select {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 2px solid var(--color-primary, #7ca37d);
+    background: white;
+    font-weight: 700;
+    color: var(--color-primary-dark, #5a7a5b);
+    cursor: pointer;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.patient-select:hover {
+    background: var(--color-primary-bg, #f0f7f0);
+}
+
+
+
+
+.navbar__links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: var(--color-primary);
+}
+
+/* Force le body à empiler les éléments de haut en bas */
+.aidant-body {
+    display: flex;
+    flex-direction: column; /* La navbar sera en haut, le main en dessous */
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg-gray);
+}
+
+/* Style du composant Navbar pour qu'il ne flotte pas à gauche */
+mc-navbar {
+    display: block;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* On centre le contenu du dashboard */
+.dashboard-container {
+    flex: 1; /* Prend l'espace restant */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* Centre horizontalement */
+    padding: 3rem 2rem;
+    box-sizing: border-box;
+}
