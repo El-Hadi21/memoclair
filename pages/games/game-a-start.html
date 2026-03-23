@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoClair - Sélection du patient</title>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="game-a-start.css">
+</head>
+<body class="selection-body">
+
+<main class="selection-container">
+
+    <header class="selection-header">
+        <a href="games.html" class="btn-back">
+            <span aria-hidden="true">⬅️</span> Retour
+        </a>
+        <h1 class="main-title">Qui va jouer ?</h1>
+        <p class="subtitle">Sélectionnez le profil pour adapter la difficulté.</p>
+    </header>
+
+    <section class="patient-grid">
+
+        <a href="game-a.html?patient=marcel" class="patient-card card--avancé">
+            <div class="patient-card__avatar">M</div>
+            <h2 class="patient-card__name">Marcel</h2>
+            <p class="patient-card__status">Niveau 1 - Stade Avancé</p>
+        </a>
+
+        <a href="game-a.html?patient=jean" class="patient-card card--modéré">
+            <div class="patient-card__avatar">J</div>
+            <h2 class="patient-card__name">Jean</h2>
+            <p class="patient-card__status">Niveau 2 - Stade Modéré</p>
+        </a>
+
+        <a href="game-a.html?patient=paul" class="patient-card card--léger">
+            <div class="patient-card__avatar">P</div>
+            <h2 class="patient-card__name">Paul</h2>
+            <p class="patient-card__status">Niveau 3 - Stade Léger</p>
+        </a>
+
+    </section>
+
+</main>
+
+</body>
+</html>

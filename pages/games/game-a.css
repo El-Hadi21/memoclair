@@ -1,201 +1,151 @@
 /* pages/games/game-a.css */
 
-body {
-    align-items: flex-start;
-    padding-bottom: 2rem;
-}
-
 .game-container {
-    max-width: 800px;
-    width: 100%;
-    padding: var(--spacing-medium);
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+    background-color: #FDFBF7;
+    overflow: hidden;
 }
 
 /* --- EN-TÊTE --- */
 .game-header {
-    width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    padding: 1rem 3rem;
     position: relative;
+    height: 80px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .btn-back {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 1.25rem;
-    font-weight: 600;
+    position: absolute;
+    left: 3rem;
+    font-size: 1.2rem;
     text-decoration: none;
-    color: var(--color-text);
-    background-color: #EAEAEA;
-    padding: 1rem 1.75rem;
-    border-radius: var(--border-radius);
-    border: 2px solid transparent;
-    min-height: 56px;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-}
-
-.btn-back:hover,
-.btn-back:focus {
-    background-color: var(--color-primary-bg);
-    border-color: var(--color-primary-light);
-    color: var(--color-primary-dark);
-    outline: none;
+    color: #555;
+    font-weight: bold;
 }
 
 .game-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--color-text);
-    line-height: 1.2;
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin: 0;
 }
 
-/* --- CONSIGNE --- */
-.game-instruction {
-    font-size: var(--font-size-text);
-    color: var(--color-text-muted);
-    font-weight: 500;
-    text-align: center;
-}
-
-/* --- IMAGE CENTRALE --- */
-.central-image {
-    background-color: var(--color-warm);
-    border: 3px solid var(--color-warm-border);
-    border-radius: var(--border-radius-lg);
-    width: 100%;
-    max-width: 480px;
-    aspect-ratio: 4 / 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-}
-
-.central-image svg {
-    width: 100%;
-    height: 100%;
-    max-height: 220px;
-}
-
-/* --- CHOIX DE RÉPONSE --- */
-.choices {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.choice-btn {
-    background-color: var(--color-warm);
-    border: 4px solid transparent;
-    border-radius: var(--border-radius-lg);
-    cursor: pointer;
+/* --- ZONE DE JEU (Parfaitement centrée) --- */
+.centered-play-zone {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 1.25rem;
-    /* Cible tactile minimum 120×120px */
-    min-width: 140px;
-    min-height: 140px;
-    width: 160px;
-    transition: all 0.2s ease;
-    position: relative;
+    justify-content: center; /* C'est ça qui centre tout au milieu de l'écran */
+    padding: 2rem;
 }
 
-.choice-btn:hover,
-.choice-btn:focus {
-    border-color: var(--color-primary-light);
-    background-color: var(--color-primary-bg);
-    transform: translateY(-4px);
-    outline: none;
+.game-patient-status {
+    color: #888;
+    font-size: 1.2rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.choice-btn.selected {
-    border-color: var(--color-primary);
-    background-color: var(--color-primary-bg);
-    box-shadow: 0 4px 16px rgba(107, 143, 113, 0.25);
+.game-instruction {
+    font-size: 2.2rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    color: var(--color-text);
+    font-weight: bold;
+    text-align: center;
 }
 
-.choice-btn.correct {
-    border-color: var(--color-primary);
-    background-color: var(--color-primary-bg);
+/* --- L'IMAGE CENTRALE (La Tasse) --- */
+.central-image-frame {
+    background-color: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 3rem;
+    border: 3px solid #EAEAEA;
 }
 
-.choice-btn.wrong {
-    border-color: #B8A07A;
-    background-color: #FDF3E3;
-    opacity: 0.7;
+.central-image-frame img {
+    height: 220px; /* Limite la hauteur de l'image */
+    width: auto;
+    object-fit: contain; /* Empêche l'image de se déformer */
+    display: block;
 }
 
-.choice-img {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
+/* --- LES CHOIX (La grille qui s'adapte) --- */
+#choices-container {
+    display: grid;
+    gap: 3rem;
     justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.choice-img svg {
+/* Ces classes sont ajoutées par le JavaScript selon le patient */
+.choices-grid-2 { grid-template-columns: repeat(2, minmax(250px, 320px)); }
+.choices-grid-3 { grid-template-columns: repeat(3, minmax(200px, 280px)); }
+.choices-grid-4 { grid-template-columns: repeat(4, minmax(180px, 240px)); }
+
+.choice-btn {
+    background-color: white;
+    border: 4px solid #EAEAEA;
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.choice-btn:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.choice-btn.correct-highlight {
+    background-color: #E8F5E9;
+    border-color: #4CAF50;
+    cursor: default;
+    transform: scale(1.05);
+}
+
+.choice-btn__img {
+    height: 140px; /* Taille des images dans les boutons */
     width: 100%;
-    height: 100%;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
 }
 
 .choice-label {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: bold;
     color: var(--color-text);
 }
 
 /* --- FEEDBACK --- */
 .feedback {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: bold;
     padding: 1rem 2rem;
-    border-radius: var(--border-radius);
-    text-align: center;
-    background-color: var(--color-primary-bg);
-    color: var(--color-primary-dark);
-    border: 2px solid var(--color-primary-mid);
-    min-width: 280px;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-/* --- BOUTON PASSER --- */
-.skip-wrap {
-    margin-top: auto;
-    padding-top: 1rem;
-}
-
-.btn-passer {
-    background: none;
-    border: none;
-    font-size: 1.25rem;
-    color: var(--color-text-muted);
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-family: inherit;
-    transition: color 0.2s;
-}
-
-.btn-passer:hover,
-.btn-passer:focus {
+    border-radius: 12px;
+    background-color: white;
     color: var(--color-text);
-    outline: none;
+    border: 3px solid var(--color-primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 10;
 }

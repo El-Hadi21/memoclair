@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MemoClair - Associations du Quotidien</title>
-    <script src="../../scripts/settings-apply.js"></script>
     <link rel="stylesheet" href="../../styles/global.css">
     <link rel="stylesheet" href="game-a.css">
 </head>
@@ -13,58 +12,23 @@
 <main class="game-container">
 
     <header class="game-header">
-        <a href="games.html" class="btn-back" aria-label="Retour aux jeux">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="15 18 9 12 15 6"/>
-            </svg>
-            Retour
+        <a href="game-a-start.html" class="btn-back">
+            <span aria-hidden="true">⬅️</span> Retour
         </a>
         <h1 class="game-title">Associations du Quotidien</h1>
     </header>
 
-    <p class="game-instruction">Quel objet va avec cette image ?</p>
+    <div class="centered-play-zone">
 
-    <div class="central-image" role="img" aria-label="Une tasse de café">
-        <svg viewBox="0 0 200 180" aria-hidden="true">
-            <path d="M60 40 Q64 26 60 16" fill="none" stroke="#A8C4A2" stroke-width="5" stroke-linecap="round"/>
-            <path d="M84 32 Q88 18 84 8"  fill="none" stroke="#A8C4A2" stroke-width="5" stroke-linecap="round"/>
-            <path d="M108 40 Q112 26 108 16" fill="none" stroke="#A8C4A2" stroke-width="5" stroke-linecap="round"/>
-            <path d="M36 62 L44 152 Q44 162 100 162 Q156 162 156 152 L164 62 Z" fill="#D4A96A"/>
-            <line x1="36" y1="62" x2="164" y2="62" stroke="#B8854A" stroke-width="3"/>
-            <ellipse cx="100" cy="78" rx="52" ry="12" fill="#8B5E3C"/>
-            <path d="M156 90 Q188 90 188 116 Q188 142 156 138" fill="none" stroke="#B8854A" stroke-width="12" stroke-linecap="round"/>
-            <ellipse cx="100" cy="162" rx="64" ry="12" fill="#C49060"/>
-        </svg>
+        <p class="game-patient-status" id="patient-status"></p>
+        <p class="game-instruction" id="game-instruction">Chargement...</p>
+
+        <div class="central-image-frame" role="img" aria-label="Une tasse de café">
+            <img src="../../assets/pictuers/game_daily/consigne_tasse.png" alt="Une tasse de café">
+        </div>
+
+        <section class="choices" id="choices-container" aria-label="Choisissez la bonne réponse"></section>
     </div>
-
-    <section class="choices" aria-label="Choisissez la bonne réponse">
-
-        <button class="choice-btn" data-correct="false" aria-label="Une assiette">
-            <div class="choice-img">
-                <svg viewBox="0 0 100 100" aria-hidden="true">
-                    <ellipse cx="50" cy="58" rx="40" ry="8" fill="#D4C5A9"/>
-                    <ellipse cx="50" cy="50" rx="40" ry="40" fill="#F5F0E8"/>
-                    <ellipse cx="50" cy="50" rx="40" ry="40" fill="none" stroke="#D4C5A9" stroke-width="4"/>
-                    <ellipse cx="50" cy="50" rx="28" ry="28" fill="none" stroke="#E8DFD0" stroke-width="2"/>
-                </svg>
-            </div>
-            <span class="choice-label">Assiette</span>
-        </button>
-
-        <button class="choice-btn choice-btn--correct" data-correct="true" aria-label="Une tasse">
-            <div class="choice-img">
-                <svg viewBox="0 0 100 100" aria-hidden="true">
-                    <path d="M18 34 L23 76 Q23 82 50 82 Q77 82 77 76 L82 34 Z" fill="#D4A96A"/>
-                    <ellipse cx="50" cy="44" rx="26" ry="6" fill="#8B5E3C"/>
-                    <path d="M77 46 Q94 46 94 59 Q94 72 77 70" fill="none" stroke="#B8854A" stroke-width="7" stroke-linecap="round"/>
-                    <ellipse cx="50" cy="82" rx="32" ry="6" fill="#C49060"/>
-                </svg>
-            </div>
-            <span class="choice-label">Tasse</span>
-        </button>
-
-    </section>
 
     <div class="feedback" id="feedback" aria-live="polite" hidden></div>
 
